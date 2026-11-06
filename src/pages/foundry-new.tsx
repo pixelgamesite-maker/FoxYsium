@@ -1,3 +1,5 @@
+import FoundryLocked from "@/components/FoundryLocked";
+import { FOUNDRY_LOCKED } from "@/lib/foxysium-constants";
 import { useMemo, useState } from "react";
 import { Loader2, ImagePlus, Check } from "lucide-react";
 import { PageHeader, Row, ButtonLink } from "@/components/den";
@@ -13,6 +15,11 @@ const SUPPLIES = [1_000_000, 100_000_000, 1_000_000_000, 10_000_000_000];
 const MAX_FEE_BPS = 300; // creator fee cap: 3%
 
 export default function FoundryNew() {
+  if (FOUNDRY_LOCKED) return <FoundryLocked />;
+  return <FoundryNewOpen />;
+}
+
+function FoundryNewOpen() {
   return (
     <>
       <PageHeader

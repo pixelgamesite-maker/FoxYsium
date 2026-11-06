@@ -14,19 +14,15 @@ export const CONTRACTS = {
   vaultImplementation: addr(env.VITE_VAULT_IMPLEMENTATION_ADDRESS),
 } as const;
 
+// Block the OpenSea drop contract was deployed in — speeds up ownership lookups.
+export const GENESIS_DEPLOY_BLOCK = BigInt(env.VITE_GENESIS_DEPLOY_BLOCK || 0);
+
 export const VAULT_SALT = "0x0000000000000000000000000000000000000000000000000000000000000000" as const;
 
-// ── Genesis (ERC-721 + Enumerable) ─────────────────────────────────
+// ── Genesis — OpenSea drop contract (ERC-721 / ERC721A) ─────────────
 export const genesisAbi = [
   ...erc721Abi,
   { type: "function", name: "totalSupply", stateMutability: "view", inputs: [], outputs: [{ type: "uint256" }] },
-  {
-    type: "function",
-    name: "tokenOfOwnerByIndex",
-    stateMutability: "view",
-    inputs: [{ name: "owner", type: "address" }, { name: "index", type: "uint256" }],
-    outputs: [{ type: "uint256" }],
-  },
 ] as const;
 
 export const foxTokenAbi = erc20Abi;

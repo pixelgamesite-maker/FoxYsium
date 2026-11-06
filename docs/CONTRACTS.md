@@ -7,7 +7,7 @@ matching `VITE_*` variable and redeploy.
 
 | Contract | Env var | Must expose |
 | --- | --- | --- |
-| `FoxYsiumGenesis` (ERC-721 + Enumerable) | `VITE_GENESIS_ADDRESS` | `balanceOf`, `ownerOf`, `totalSupply`, `tokenOfOwnerByIndex` — max supply hard-capped at 2,626 |
+| Genesis (deployed by OpenSea Studio) | `VITE_GENESIS_ADDRESS` + `VITE_GENESIS_DEPLOY_BLOCK` | Nothing custom — the site only uses `balanceOf`, `ownerOf`, `totalSupply` and `Transfer` events, which OpenSea's drop contract has. Set max supply to 2,626 in Studio. |
 | `FoxToken` (ERC-20) | `VITE_FOX_TOKEN_ADDRESS` | standard ERC-20 (`balanceOf`, `allowance`, `approve`, `decimals`, `totalSupply`) |
 | `FoxStaking` | `VITE_STAKING_ADDRESS` | `totalStaked()`, `stakerCount()`, `stakedOf(addr)`, `earned(addr)`, `unlockedOf(addr)`, `stake(amount)`, `withdraw(amount)`, `claim()` |
 | `FoxLocker` | `VITE_LOCKER_ADDRESS` | `totalLocked()`, `locksOf(addr) → (id, amount, unlockAt, withdrawn)[]`, `lock(amount, unlockAt) → id`, `withdraw(id)` — no owner, no early exit |
@@ -37,3 +37,16 @@ service-role key:
 - `fox_reputation` — `owner_wallet`, `fox_class`, `points` per Fox.
 - `activity` — feed rows (`kind`, `title`, `fox_id`, `wallet`, `tx_hash`).
 - `allowlist_entries.status` — approve or reject.
+
+## Allowlist → OpenSea
+
+OpenSea's drop allowlist stage takes a CSV of wallet addresses. Export the
+approved wallets from the Supabase SQL editor and download the result as CSV:
+
+```sql
+select wallet from public.allowlist_entries where status = 'approved' order by created_at;
+```
+
+Approve entries first with
+`update public.allowlist_entries set status = 'approved' where status = 'pending';`
+(or selectively).

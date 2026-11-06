@@ -55,9 +55,23 @@ scheduled for Nov 9 2026; when Kinetiq publishes its chain ID, RPC and explorer,
 change `VITE_CHAIN_ID`, `VITE_CHAIN_NAME`, `VITE_RPC_URL`, `VITE_EXPLORER_URL`
 and redeploy. Note viem's built-in `elysiumTestnet` is a different chain.
 
+## Mint (OpenSea)
+
+Genesis mints on OpenSea. OpenSea doesn't support Kinetiq Elysium yet, so the
+site shows "Minting on OpenSea soon" until you set `VITE_OPENSEA_URL`. When the
+drop is live, also set `VITE_GENESIS_ADDRESS` and `VITE_GENESIS_DEPLOY_BLOCK` so
+the Console and Fox pages can read ownership. The allowlist exports to the CSV
+OpenSea asks for — see [`docs/CONTRACTS.md`](docs/CONTRACTS.md#allowlist--opensea).
+
+## FoxFoundry
+
+Locked by default: the nav, home page and `/foundry` routes show a teaser.
+Set `VITE_FOUNDRY_OPEN=true` and redeploy to open it.
+
 ## Contracts
 
-None are deployed yet. Each page switches from "not live yet" to the real flow
+The NFT contract comes from OpenSea. Staking, the locker, $FOX and the vault
+implementation aren't deployed yet. Each page switches from "not live yet" to the real flow
 as soon as its address variable is set. See [`docs/CONTRACTS.md`](docs/CONTRACTS.md)
 for the interface each contract must expose and what the indexer needs to do.
 

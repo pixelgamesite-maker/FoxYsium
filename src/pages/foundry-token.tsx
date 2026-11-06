@@ -1,3 +1,5 @@
+import FoundryLocked from "@/components/FoundryLocked";
+import { FOUNDRY_LOCKED } from "@/lib/foxysium-constants";
 import { Link, useParams } from "wouter";
 import { Copy, ExternalLink, Globe } from "lucide-react";
 import { Row, SectionTitle, StatTile, ButtonLink, EmptyState } from "@/components/den";
@@ -8,6 +10,11 @@ import { fmtUsd, short } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 export default function FoundryToken() {
+  if (FOUNDRY_LOCKED) return <FoundryLocked />;
+  return <FoundryTokenOpen />;
+}
+
+function FoundryTokenOpen() {
   const { id } = useParams<{ id: string }>();
   const { data: l, isLoading } = useLaunch(id);
 

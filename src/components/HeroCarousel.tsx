@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Sparkles, Wallet, Rocket, Coins, Lock, Bot, type LucideIcon } from "lucide-react";
 import { ButtonLink } from "@/components/den";
-import { HERO_ART, SUPPLY, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { HERO_ART, MINT_PLATFORM, OPENSEA_URL, SUPPLY, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
 import { cn } from "@/lib/utils";
 
 type Slide = {
@@ -18,12 +18,12 @@ const SLIDES: Slide[] = [
   {
     tag: `Genesis · ${SUPPLY.toLocaleString()} Foxes · Elysium`,
     title: "Every Fox comes with its own wallet",
-    body: "2,626 Genesis Foxes. Each one is an identity, a vault that holds its own assets, and a seat in the den's economy.",
+    body: `2,626 Genesis Foxes, minting on ${MINT_PLATFORM}. Each one is an identity, a vault that holds its own assets, and a seat in the den's economy.`,
     bg: "#F27A1A",
     icon: Sparkles,
     ctas: [
-      { label: "See the collection", href: "/genesis" },
-      { label: "Join the allowlist", href: "/genesis#allowlist", variant: "ghost" },
+      OPENSEA_URL ? { label: `Mint on ${MINT_PLATFORM}`, href: OPENSEA_URL } : { label: "Join the allowlist", href: "/genesis#allowlist" },
+      { label: "See the collection", href: "/genesis", variant: "ghost" },
     ],
   },
   {
@@ -39,20 +39,20 @@ const SLIDES: Slide[] = [
     ],
   },
   {
-    tag: "FoxFoundry · launchpad",
-    title: "Launch a token from the den",
-    body: "Name it, set supply and creator fees, pair it with HYPE. Link it to your Fox so its share of revenue lands in the vault.",
+    tag: "FoxFoundry · locked",
+    title: "The Foundry is locked. For now.",
+    body: "Soon, Genesis holders will spin up their own coins right here, paired with HYPE, with a cut of every trade flowing back to their Fox.",
     bg: "#5EE6A8",
     icon: Rocket,
     ctas: [
-      { label: "Launch feed", href: "/foundry" },
-      { label: "Start a launch", href: "/foundry/new", variant: "ghost" },
+      { label: "Peek inside", href: "/foundry" },
+      { label: "Get a key", href: "/genesis#allowlist", variant: "ghost" },
     ],
   },
   {
     tag: `Staking · $${TOKEN_SYMBOL}`,
     title: "Stake, and earn from what the den makes",
-    body: "Rewards come from Foundry, market and agent fees, not endless emissions. Your share follows the funded pool.",
+    body: "Rewards come from launch, market and agent fees, not endless emissions. Your share follows the funded pool.",
     bg: "#F2C14E",
     icon: Coins,
     flip: true,

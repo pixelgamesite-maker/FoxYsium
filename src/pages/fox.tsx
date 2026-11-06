@@ -7,7 +7,7 @@ import { useFoxOwner, useFoxVault, useReputation, useActivity } from "@/hooks/us
 import { useTx } from "@/hooks/use-tx";
 import { CONTRACTS, registryAbi, VAULT_SALT } from "@/lib/contracts";
 import { elysium, explorerAddress, explorerTx } from "@/lib/wagmi";
-import { LEVELS, levelFor, SUPPLY } from "@/lib/foxysium-constants";
+import { LEVELS, levelFor, MINT_PLATFORM, OPENSEA_ITEM_BASE, SUPPLY } from "@/lib/foxysium-constants";
 import { ago, fmtToken, short } from "@/lib/format";
 import NotFound from "./not-found";
 
@@ -70,6 +70,16 @@ function Profile({ id }: { id: number }) {
               }
             />
             <Row k="Token ID" v={`#${id}`} />
+            {OPENSEA_ITEM_BASE && (
+              <Row
+                k="Marketplace"
+                v={
+                  <a href={`${OPENSEA_ITEM_BASE}${id}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 underline underline-offset-2">
+                    View on {MINT_PLATFORM} <ExternalLink className="h-4 w-4" />
+                  </a>
+                }
+              />
+            )}
             <Row k="Network" v={elysium.name} />
           </div>
         </section>

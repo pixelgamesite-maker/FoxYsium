@@ -1,3 +1,5 @@
+import FoundryLocked from "@/components/FoundryLocked";
+import { FOUNDRY_LOCKED } from "@/lib/foxysium-constants";
 import { useMemo, useState } from "react";
 import { PageHeader, EmptyState, ButtonLink } from "@/components/den";
 import LaunchCard from "@/components/LaunchCard";
@@ -12,6 +14,11 @@ const SORTS = [
 ] as const;
 
 export default function Foundry() {
+  if (FOUNDRY_LOCKED) return <FoundryLocked />;
+  return <FoundryOpen />;
+}
+
+function FoundryOpen() {
   const { data, isLoading, error } = useLaunches(120);
   const [sort, setSort] = useState<(typeof SORTS)[number]["id"]>("new");
   const [q, setQ] = useState("");

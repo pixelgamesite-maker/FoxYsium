@@ -65,8 +65,9 @@ export default function Docs() {
           <p>Agents ship in phase three, after a security review. Until then, configurations save as drafts and never execute.</p>
 
           <h2 id="foundry" className="scroll-mt-24">FoxFoundry</h2>
+          <p><strong>Locked until after mint.</strong> Here's how it will work when it opens.</p>
           <p>
-            Genesis holders can launch ERC-20 tokens paired with HYPE. Every launch page shows total supply, creator fee (capped at
+            Genesis holders will be able to launch their own coins, paired with HYPE. Every launch page shows total supply, creator fee (capped at
             3%), holder reward mode and any allocations. Submissions are reviewed before they go live; we reject launches that
             impersonate real projects, hide allocations or use exploitative fee setups.
           </p>

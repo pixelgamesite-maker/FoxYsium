@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { X, LogOut } from "lucide-react";
+import { X, LogOut, Lock } from "lucide-react";
 import FoxMark, { Wordmark } from "@/components/FoxMark";
 import { useWallet } from "@/hooks/use-wallet";
 import { useDenAuth } from "@/hooks/use-den-auth";
@@ -25,7 +25,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
 
   if (!open) return null;
 
-  const item = (p: { path: string; label: string; icon: React.ComponentType<{ className?: string }> }) => {
+  const item = (p: { path: string; label: string; icon: React.ComponentType<{ className?: string }>; locked?: boolean }) => {
     const active = p.path === "/" ? location === "/" : location.startsWith(p.path);
     return (
       <Link
@@ -39,6 +39,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
       >
         <p.icon className="h-5 w-5 shrink-0" />
         {p.label}
+        {p.locked && <Lock className="h-4 w-4 ml-auto opacity-70" aria-label="Locked" />}
       </Link>
     );
   };

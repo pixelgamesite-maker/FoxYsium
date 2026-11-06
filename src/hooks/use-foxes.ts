@@ -1,13 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import { useReadContract, useReadContracts, useBytecode, useBalance } from "wagmi";
-import type { Address } from "viem";
-import { CONTRACTS, genesisAbi, registryAbi, stakingAbi, lockerAbi, VAULT_SALT } from "@/lib/contracts";
+import { useReadContract, useReadContracts, useBytecode, useBalance, usePublicClient } from "wagmi";
+import { parseAbiItem, type Address } from "viem";
+import { CONTRACTS, GENESIS_DEPLOY_BLOCK, genesisAbi, registryAbi, stakingAbi, lockerAbi, VAULT_SALT } from "@/lib/contracts";
+
+const transferEvent = parseAbiItem("event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)");
 import { elysium } from "@/lib/wagmi";
 import { supabase, type Launch, type ReputationRow, type ActivityRow } from "@/lib/supabase";
 
-/** Foxes held by a wallet (ERC-721 Enumerable). */
+/**
+ * Foxes held by a wallet. OpenSea drop contracts (ERC721A) don't expose
+ * tokenOfOwnerByIndex, so we read Transfer logs into the wallet from the
+ * contract's deploy block, then confirm each candidate with ownerOf.
+ * Falls back to the indexer's owner_wallet in Supabase if the RPC refuses
+ * the log range.
+ */
 export function useOwnedFoxes(owner: Address | null) {
-  const enabled = !!owner && !!CONTRACTS.genesis;
+  const client = usePublicClient({ chainId: elysium.id });
+  const enabled = !!owner && !!CONTRACTS.genesis && !!client;
   const { data: bal, isLoading: balLoading } = useReadContract({
     address: CONTRACTS.genesis ?? undefined,
     abi: genesisAbi,
@@ -16,19 +25,45 @@ export function useOwnedFoxes(owner: Address | null) {
     chainId: elysium.id,
     query: { enabled },
   });
-  const count = Math.min(Number(bal ?? 0n), 50);
-  const { data, isLoading } = useReadContracts({
-    contracts: Array.from({ length: count }, (_, i) => ({
+  const balance = Number(bal ?? 0n);
+
+  const candidates = useQuery({
+    queryKey: ["fox-candidates", owner, balance],
+    enabled: enabled && balance > 0,
+    queryFn: async (): Promise<number[]> => {
+      try {
+        const logs = await client!.getLogs({
+          address: CONTRACTS.genesis!,
+          event: transferEvent,
+          args: { to: owner! },
+          fromBlock: GENESIS_DEPLOY_BLOCK,
+          toBlock: "latest",
+        });
+        return [...new Set(logs.map((l) => Number(l.args.tokenId)))];
+      } catch {
+        if (!supabase) return [];
+        const { data } = await supabase.from("fox_reputation").select("fox_id").eq("owner_wallet", owner!.toLowerCase());
+        return (data ?? []).map((r: { fox_id: number }) => r.fox_id);
+      }
+    },
+  });
+
+  const ids0 = (candidates.data ?? []).slice(0, 200);
+  const { data: owners, isLoading: ownLoading } = useReadContracts({
+    contracts: ids0.map((id) => ({
       address: CONTRACTS.genesis!,
       abi: genesisAbi,
-      functionName: "tokenOfOwnerByIndex" as const,
-      args: [owner!, BigInt(i)] as const,
+      functionName: "ownerOf" as const,
+      args: [BigInt(id)] as const,
       chainId: elysium.id,
     })),
-    query: { enabled: enabled && count > 0 },
+    query: { enabled: ids0.length > 0 },
   });
-  const ids = (data ?? []).flatMap((r) => (r.status === "success" ? [Number(r.result as bigint)] : []));
-  return { ids, balance: Number(bal ?? 0n), isLoading: balLoading || isLoading, live: !!CONTRACTS.genesis };
+  const ids = ids0
+    .filter((_, i) => owners?.[i]?.status === "success" && (owners[i].result as string).toLowerCase() === owner?.toLowerCase())
+    .sort((a, b) => a - b);
+
+  return { ids, balance, isLoading: balLoading || candidates.isLoading || ownLoading, live: !!CONTRACTS.genesis };
 }
 
 /** ERC-6551 vault address for a Fox, plus whether it's deployed and its HYPE balance. */

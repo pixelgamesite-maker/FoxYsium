@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, AlertTriangle } from "lucide-react";
+import { Menu, AlertTriangle, Lock } from "lucide-react";
 import FoxMark, { Wordmark } from "@/components/FoxMark";
 import { useWallet } from "@/hooks/use-wallet";
 import { ConnectWalletDialog } from "@/components/wallet/ConnectWalletDialog";
@@ -43,6 +43,7 @@ export function Topbar() {
                   className={cn("px-3 py-2 rounded-xl", active ? "bg-dusk-2 text-fur" : "text-mist hover:text-belly")}
                 >
                   {n.label}
+                  {n.locked && <Lock className="inline h-3.5 w-3.5 ml-1 -mt-0.5 opacity-70" aria-label="Locked" />}
                 </Link>
               );
             })}

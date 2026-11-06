@@ -7,6 +7,10 @@ export const TOKEN_SYMBOL = "FOX"; // provisional, pending ticker check
 export const SUPPLY = 2626;
 export const MINT_PRICE = "TBA";
 export const MINT_STATUS: "allowlist" | "live" | "sold-out" = "allowlist";
+export const MINT_PLATFORM = "OpenSea";
+
+// FoxFoundry stays locked (teaser only) until VITE_FOUNDRY_OPEN=true.
+export const FOUNDRY_LOCKED = import.meta.env.VITE_FOUNDRY_OPEN !== "true";
 
 // Base URL for per-token art. Point at IPFS/Arweave once metadata is pinned,
 // e.g. "https://ipfs.io/ipfs/<cid>/" — the site appends `${id}.png`.
@@ -18,6 +22,12 @@ const env = import.meta.env;
 export const SWAP_URL: string | null = env.VITE_SWAP_URL || null;
 export const X_URL: string | null = env.VITE_X_URL && env.VITE_X_URL !== "https://x.com/" ? env.VITE_X_URL : null;
 export const TELEGRAM_URL: string | null = env.VITE_TELEGRAM_URL || null;
+
+// OpenSea drop page. Until set, the site shows "Minting on OpenSea soon"
+// instead of a dead link (OpenSea doesn't support Elysium yet).
+export const OPENSEA_URL: string | null = env.VITE_OPENSEA_URL || null;
+// Item URL prefix for individual Foxes, e.g. "https://opensea.io/item/elysium/0xabc…/"
+export const OPENSEA_ITEM_BASE: string | null = env.VITE_OPENSEA_ITEM_BASE || null;
 
 // ── Classes (from the blueprint) ───────────────────────────────────
 export type FoxClass = "Sovereign" | "Oracle" | "Alchemist" | "Merchant" | "Guardian";

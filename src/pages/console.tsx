@@ -9,7 +9,7 @@ import { useOwnedFoxes, useFoxVault } from "@/hooks/use-foxes";
 import { useFoxToken } from "@/hooks/use-fox-token";
 import { supabase, type Launch, type AgentConfig } from "@/lib/supabase";
 import { CONTRACTS } from "@/lib/contracts";
-import { AGENTS, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { AGENTS, FOUNDRY_LOCKED, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
 import { fmtToken } from "@/lib/format";
 
 export default function Console() {
@@ -76,7 +76,7 @@ function Inner() {
       {!isSignedIn ? (
         <section className="mt-12 sticker p-6 flex flex-col sm:flex-row sm:items-center gap-4">
           <div className="flex-1">
-            <div className="font-bold text-lg">Sign in to see your launches and agents</div>
+            <div className="font-bold text-lg">Sign in to see your agents and allowlist status</div>
             <p className="text-mist">One signature, no gas.</p>
           </div>
           <button className="btn btn-fur" onClick={signIn} disabled={signingIn}>
@@ -84,8 +84,8 @@ function Inner() {
           </button>
         </section>
       ) : (
-        <section className="mt-12 grid lg:grid-cols-2 gap-6">
-          <div>
+        <section className={`mt-12 grid gap-6 ${FOUNDRY_LOCKED ? "" : "lg:grid-cols-2"}`}>
+          {!FOUNDRY_LOCKED && <div>
             <SectionTitle action={<Link href="/foundry/new" className="font-semibold text-fur-2 hover:underline underline-offset-4">New launch</Link>}>Your launches</SectionTitle>
             {mine.data?.launches.length ? (
               <ul className="sticker p-2">
@@ -103,7 +103,7 @@ function Inner() {
             ) : (
               <EmptyState title="No launches yet">Tokens you submit through the Foundry show here with their review status.</EmptyState>
             )}
-          </div>
+          </div>}
           <div>
             <SectionTitle action={<Link href="/agents" className="font-semibold text-fur-2 hover:underline underline-offset-4">Configure</Link>}>Your agents</SectionTitle>
             {mine.data?.agents.length ? (

@@ -1,10 +1,11 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SectionTitle } from "@/components/den";
-import { MINT_PRICE, SUPPLY, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { MINT_PLATFORM, MINT_PRICE, SUPPLY, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
 
 const FAQ = [
   { q: "How many Foxes are there?", a: `${SUPPLY.toLocaleString()}, and that's final. The Genesis supply is fixed in the contract and can't be increased.` },
-  { q: "What does it cost to mint?", a: `Mint price is ${MINT_PRICE}. Join the allowlist to hear first; allowlist spots mint before the public phase.` },
+  { q: "Where do I mint?", a: `On ${MINT_PLATFORM}. The mint opens there once ${MINT_PLATFORM} supports Kinetiq Elysium; the official link will be posted on this site, so don't follow mint links from DMs or replies.` },
+  { q: "What does it cost to mint?", a: `Mint price is ${MINT_PRICE}. Join the allowlist to hear first; allowlist wallets mint before the public phase.` },
   { q: "Which chain is this on?", a: "Kinetiq Elysium, an L2 that settles to HyperEVM. Gas is paid in HYPE, so you'll need a little HYPE on Elysium to mint or transact." },
   { q: "What is a Fox's vault?", a: "Each Fox gets an ERC-6551 token-bound account: a wallet owned by the NFT itself. Rewards are paid into it, and if you sell the Fox, the vault and everything in it go to the buyer. Withdraw before you list if you want to keep the contents." },
   { q: "Do I have to use the AI agent?", a: "No. Agents are off by default. If you switch one on, it can only do what you allow, up to the limits you set, and you can revoke it at any time. Limits are enforced on-chain, not by the AI." },

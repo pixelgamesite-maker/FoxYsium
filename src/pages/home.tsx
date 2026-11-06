@@ -5,7 +5,8 @@ import LaunchCard from "@/components/LaunchCard";
 import { SectionTitle, StatTile, EmptyState, ButtonLink } from "@/components/den";
 import { useEconomy, useLaunches } from "@/hooks/use-foxes";
 import { fmtToken, fmtInt, pct } from "@/lib/format";
-import { CLASSES, REVENUE_SPLIT, ROADMAP, SUPPLY, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { CLASSES, FOUNDRY_LOCKED, REVENUE_SPLIT, ROADMAP, SUPPLY, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import FoundryLocked from "@/components/FoundryLocked";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 
@@ -77,6 +78,16 @@ function ClassesStrip() {
 }
 
 function RecentLaunches() {
+  if (FOUNDRY_LOCKED)
+    return (
+      <section className="mt-16">
+        <FoundryLocked compact />
+      </section>
+    );
+  return <RecentLaunchesOpen />;
+}
+
+function RecentLaunchesOpen() {
   const { data, isLoading } = useLaunches(6);
   return (
     <section className="mt-16">
@@ -115,7 +126,7 @@ function RevenueFlow() {
       <div>
         <SectionTitle>Where the money goes</SectionTitle>
         <p className="text-mist leading-relaxed max-w-[52ch]">
-          Foundry launches, market trades and agent usage all pay small fees. Part of every dollar collected goes back to
+          Launches, market trades and agent usage all pay small fees. Part of every dollar collected goes back to
           the Genesis Foxes, straight into each Fox's vault. No emissions printer, no promised APY.
         </p>
         <p className="text-haze text-[14px] mt-3">Proposed split, to be finalised with the tokenomics.</p>

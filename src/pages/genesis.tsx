@@ -6,7 +6,7 @@ import AllowlistForm from "@/components/AllowlistForm";
 import FoxArt from "@/components/FoxArt";
 import { useEconomy, useAllowlistCount } from "@/hooks/use-foxes";
 import { useHashScroll } from "@/hooks/use-hash-scroll";
-import { CLASSES, HERO_ART, MINT_PRICE, MINT_STATUS, RARITY, SUPPLY } from "@/lib/foxysium-constants";
+import { CLASSES, HERO_ART, MINT_PLATFORM, MINT_PRICE, MINT_STATUS, OPENSEA_URL, RARITY, SUPPLY } from "@/lib/foxysium-constants";
 import { CONTRACTS } from "@/lib/contracts";
 import { elysium, explorerAddress } from "@/lib/wagmi";
 import { fmtInt, short } from "@/lib/format";
@@ -30,14 +30,24 @@ export default function Genesis() {
           title="Genesis"
           lede={`${SUPPLY.toLocaleString()} Foxes. That's the whole collection, fixed forever. Every one is a member of the den with its own wallet, and holding one is how you take part in everything FoxYsium builds.`}
         >
-          <ButtonLink href="#allowlist">Join the allowlist</ButtonLink>
-          <ButtonLink href="/guide" variant="ghost">
-            How minting works
-          </ButtonLink>
+          {OPENSEA_URL ? (
+            <>
+              <ButtonLink href={OPENSEA_URL}>Mint on {MINT_PLATFORM}</ButtonLink>
+              <ButtonLink href="#allowlist" variant="ghost">Join the allowlist</ButtonLink>
+            </>
+          ) : (
+            <>
+              <ButtonLink href="#allowlist">Join the allowlist</ButtonLink>
+              <span className="chip bg-dusk-2 text-mist !py-2 !px-4 text-[15px]">
+                <span className="h-2 w-2 rounded-full bg-fur" /> Minting on {MINT_PLATFORM} soon
+              </span>
+            </>
+          )}
         </PageHeader>
         <div className="sticker p-5 mb-8">
           <Row k="Supply" v={SUPPLY.toLocaleString()} />
           <Row k="Mint price" v={MINT_PRICE} />
+          <Row k="Mint on" v={OPENSEA_URL ? <a href={OPENSEA_URL} target="_blank" rel="noreferrer" className="underline underline-offset-2">{MINT_PLATFORM}</a> : `${MINT_PLATFORM} (link soon)`} />
           <Row k="Network" v={elysium.name} />
           <Row k="Status" v={e.live.genesis ? `${fmtInt(e.minted)} minted` : MINT_STATUS === "allowlist" ? "Allowlist open" : MINT_STATUS} />
           {allowlisted !== undefined && <Row k="On the allowlist" v={fmtInt(allowlisted)} />}
@@ -50,7 +60,7 @@ export default function Genesis() {
                   {short(CONTRACTS.genesis)}
                 </a>
               ) : (
-                "Announced at mint"
+                `Deployed on ${MINT_PLATFORM} at mint`
               )
             }
           />
@@ -120,8 +130,8 @@ export default function Genesis() {
         <div>
           <SectionTitle>Get on the allowlist</SectionTitle>
           <p className="text-mist leading-relaxed max-w-[50ch]">
-            Allowlist wallets mint before the public phase. Connect the wallet you'll mint with and sign a message to prove
-            it's yours. No gas, no approvals.
+            Allowlist wallets mint on {MINT_PLATFORM} before the public phase. Connect the wallet you'll mint with and sign
+            a message to prove it's yours. No gas, no approvals.
           </p>
           <div className="mt-6 hidden lg:block sticker overflow-hidden p-0 bg-gold h-[280px] relative">
             <img src={HERO_ART} alt="" className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[96%] w-auto max-w-none -scale-x-100" />
@@ -166,7 +176,15 @@ function Gallery() {
           </Link>
         ))}
       </div>
-      <p className="text-haze text-[14px] mt-3">Art reveals at mint. Until then, every Fox is a silhouette.</p>
+      <p className="text-haze text-[14px] mt-3">
+        Art reveals at mint. Until then, every Fox is a silhouette.
+        {OPENSEA_URL && (
+          <>
+            {" "}
+            <a href={OPENSEA_URL} target="_blank" rel="noreferrer" className="text-fur-2 underline underline-offset-2">Browse on {MINT_PLATFORM}</a>
+          </>
+        )}
+      </p>
     </section>
   );
 }

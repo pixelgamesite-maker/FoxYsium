@@ -9,7 +9,7 @@ const STEPS = [
   { t: "Join the allowlist", b: "Sign one message on the Genesis page. It's free and proves the wallet is yours.", cta: "/genesis#allowlist" },
   { t: "Mint your Fox", b: "Allowlist wallets mint first. Your Fox arrives with a vault address already reserved for it.", cta: "/genesis" },
   { t: "Activate the vault", b: "From your Fox's page, activate its vault. Rewards and anything you send to it are held by the Fox.", cta: "/console" },
-  { t: "Put it to work", b: "Stake or lock $FOX, launch a token in the Foundry, or set up an agent with spending limits.", cta: "/agents" },
+  { t: "Put it to work", b: "Stake or lock $FOX, or set up an agent with spending limits. The Foundry unlocks for holders after mint.", cta: "/agents" },
 ] as const;
 
 export default function Guide() {
