@@ -1,0 +1,39 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import path from "path";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(import.meta.dirname, "src"),
+    },
+    dedupe: ["react", "react-dom"],
+  },
+  build: {
+    outDir: path.resolve(import.meta.dirname, "dist"),
+    emptyOutDir: true,
+    chunkSizeWarningLimit: 900,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom", "wouter"],
+          web3: ["wagmi", "viem", "@tanstack/react-query"],
+          supabase: ["@supabase/supabase-js"],
+        },
+      },
+    },
+  },
+  server: {
+    port: Number(process.env.PORT) || 8080,
+    host: "0.0.0.0",
+  },
+  preview: {
+    port: Number(process.env.PORT) || 8080,
+    host: "0.0.0.0",
+  },
+});
