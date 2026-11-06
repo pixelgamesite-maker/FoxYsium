@@ -77,7 +77,7 @@ export default function Docs() {
           <p>
             <strong>Staking</strong> puts ${TOKEN_SYMBOL} in a shared pool that earns from ecosystem revenue. Principal unlocks
             gradually. <strong>Locking</strong> is separate: a time-lock with no admin key that unlocks platform privileges at 30, 90,
-            180 and 365 days — not higher yield. <strong>Liquidity</strong> runs on Elysium DEXes; LPs earn trading fees and carry
+            180 and 365 days, not higher yield. <strong>Liquidity</strong> runs on Elysium DEXes; LPs earn trading fees and carry
             impermanent-loss risk.
           </p>
 

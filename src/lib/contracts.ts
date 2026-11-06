@@ -3,7 +3,7 @@ import { erc20Abi, erc721Abi, isAddress, type Address } from "viem";
 const env = import.meta.env;
 const addr = (v: string | undefined): Address | null => (v && isAddress(v) ? (v as Address) : null);
 
-// Leave any of these blank until the contract is deployed — every page checks
+// Leave any of these blank until the contract is deployed, every page checks
 // for null and shows a "not live yet" state instead of erroring.
 export const CONTRACTS = {
   genesis: addr(env.VITE_GENESIS_ADDRESS),
@@ -14,12 +14,12 @@ export const CONTRACTS = {
   vaultImplementation: addr(env.VITE_VAULT_IMPLEMENTATION_ADDRESS),
 } as const;
 
-// Block the OpenSea drop contract was deployed in — speeds up ownership lookups.
+// Block the OpenSea drop contract was deployed in, speeds up ownership lookups.
 export const GENESIS_DEPLOY_BLOCK = BigInt(env.VITE_GENESIS_DEPLOY_BLOCK || 0);
 
 export const VAULT_SALT = "0x0000000000000000000000000000000000000000000000000000000000000000" as const;
 
-// ── Genesis — OpenSea drop contract (ERC-721 / ERC721A) ─────────────
+// ── Genesis: OpenSea drop contract (ERC-721 / ERC721A) ─────────────
 export const genesisAbi = [
   ...erc721Abi,
   { type: "function", name: "totalSupply", stateMutability: "view", inputs: [], outputs: [{ type: "uint256" }] },
@@ -27,7 +27,7 @@ export const genesisAbi = [
 
 export const foxTokenAbi = erc20Abi;
 
-// ── FoxStaking — interface the staking contract must expose ─────────
+// ── FoxStaking: interface the staking contract must expose ─────────
 export const stakingAbi = [
   { type: "function", name: "totalStaked", stateMutability: "view", inputs: [], outputs: [{ type: "uint256" }] },
   { type: "function", name: "stakerCount", stateMutability: "view", inputs: [], outputs: [{ type: "uint256" }] },
@@ -39,7 +39,7 @@ export const stakingAbi = [
   { type: "function", name: "claim", stateMutability: "nonpayable", inputs: [], outputs: [] },
 ] as const;
 
-// ── FoxLocker — trustless time-lock, no admin key ──────────────────
+// ── FoxLocker: trustless time-lock, no admin key ──────────────────
 export const lockerAbi = [
   { type: "function", name: "totalLocked", stateMutability: "view", inputs: [], outputs: [{ type: "uint256" }] },
   {

@@ -16,7 +16,7 @@ export default function Leaderboard() {
     <>
       <PageHeader
         title="Leaderboard"
-        lede="Foxes ranked by reputation. Points come from verified activity — launches, governance, market and agent work — and can't be bought."
+        lede="Foxes ranked by reputation. Points come from verified activity, like launches, governance, market and agent work, and can't be bought."
       />
       <div className="flex flex-wrap gap-2 mb-6">
         {LEVELS.map((l) => (

@@ -160,7 +160,7 @@
   .prose-den a { color: var(--color-fur-2); text-decoration: underline; text-underline-offset: 3px; }
 }
 
-/* Hero art bob — the single ambient motion on the site. */
+/* Hero art bob, the single ambient motion on the site. */
 @keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
 .bob { animation: bob 5s ease-in-out infinite; }
 @keyframes slide-in { from { opacity: 0; transform: translateX(18px) } to { opacity: 1; transform: none } }
@@ -169,4 +169,13 @@
 @media (prefers-reduced-motion: reduce) {
   .bob, .slide-in { animation: none !important; }
   .btn { transition: none; }
+}
+
+/* Menu sheet: rises from the bottom on phones, drops from the header on desktop. */
+@keyframes sheet-up { from { transform: translateY(100%) } to { transform: none } }
+@keyframes sheet-down { from { opacity: 0; transform: translateY(-10px) scale(.98) } to { opacity: 1; transform: none } }
+@utility sheet-up { animation: sheet-up .32s cubic-bezier(.2,.8,.2,1) both; }
+@utility sheet-down { animation: sheet-down .2s cubic-bezier(.2,.8,.2,1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .sheet-up, .sheet-down { animation: none !important; }
 }

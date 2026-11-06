@@ -7,7 +7,7 @@ import { elysium } from "@/lib/wagmi";
 // Wallet sign-in to Supabase (Sign in with Ethereum, EIP-4361).
 // Connecting a wallet is enough to read; signing in is only needed to write
 // (allowlist, Foundry submissions, agent configs). RLS keys every write to the
-// signed-in wallet — see public.current_wallet() in the migration.
+// signed-in wallet, see public.current_wallet() in the migration.
 export function useDenAuth() {
   const { address, connector } = useAccount();
   const [session, setSession] = useState<Session | null>(null);
@@ -31,7 +31,7 @@ export function useDenAuth() {
   const signIn = useCallback(async () => {
     setError(null);
     if (!supabase) {
-      setError("Supabase isn't configured yet — add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.");
+      setError("Supabase isn't configured yet. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.");
       return false;
     }
     if (!connector) {

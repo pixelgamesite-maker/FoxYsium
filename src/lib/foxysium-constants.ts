@@ -3,7 +3,7 @@
 export const BRAND = "FoxYsium";
 export const TOKEN_SYMBOL = "FOX"; // provisional, pending ticker check
 
-// ── Collection facts (edit here — used across all pages) ───────────
+// ── Collection facts (edit here: used across all pages) ───────────
 export const SUPPLY = 2626;
 export const MINT_PRICE = "TBA";
 export const MINT_STATUS: "allowlist" | "live" | "sold-out" = "allowlist";
@@ -13,7 +13,7 @@ export const MINT_PLATFORM = "OpenSea";
 export const FOUNDRY_LOCKED = import.meta.env.VITE_FOUNDRY_OPEN !== "true";
 
 // Base URL for per-token art. Point at IPFS/Arweave once metadata is pinned,
-// e.g. "https://ipfs.io/ipfs/<cid>/" — the site appends `${id}.png`.
+// e.g. "https://ipfs.io/ipfs/<cid>/", the site appends `${id}.png`.
 export const ART_BASE_URL = "/foxes/";
 export const HERO_ART = "/fox-hero.webp";
 

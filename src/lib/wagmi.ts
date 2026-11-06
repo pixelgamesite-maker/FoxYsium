@@ -4,7 +4,7 @@ import { defineChain } from "viem";
 
 const env = import.meta.env;
 
-// Kinetiq Elysium — an Arbitrum Orbit L2 settling to HyperEVM, HYPE for gas.
+// Kinetiq Elysium, an Arbitrum Orbit L2 settling to HyperEVM, HYPE for gas.
 // NB: viem's built-in `elysiumTestnet` is an unrelated chain (id 1338), so we
 // define ours explicitly. Testnet values are the defaults; set the VITE_* vars
 // to the official mainnet values once Kinetiq publishes them.

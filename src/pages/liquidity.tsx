@@ -44,8 +44,8 @@ export default function Liquidity() {
         <div className="sticker p-5 flex gap-4">
           <AlertTriangle className="h-6 w-6 text-gold shrink-0 mt-0.5" />
           <p className="text-mist leading-relaxed">
-            If one token's price moves a lot against the other, you can end up with less value than if you'd just held both —
-            that's impermanent loss. Trading fees can offset it, but not always. Only provide what you're comfortable leaving in
+            If one token's price moves a lot against the other, you can end up with less value than if you'd just held both.
+            That's called impermanent loss. Trading fees can offset it, but not always. Only provide what you're comfortable leaving in
             the pool through price swings.
           </p>
         </div>

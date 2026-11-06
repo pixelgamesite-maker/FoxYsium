@@ -3,18 +3,18 @@ import { formatUnits } from "viem";
 export const short = (a?: string | null, n = 4) => (a ? `${a.slice(0, 2 + n)}…${a.slice(-n)}` : "");
 
 export function fmtInt(n: number | bigint | null | undefined) {
-  if (n === null || n === undefined) return "—";
+  if (n === null || n === undefined) return "N/A";
   return Number(n).toLocaleString("en-US");
 }
 
 export function fmtToken(v: bigint | undefined, decimals = 18, max = 2) {
-  if (v === undefined) return "—";
+  if (v === undefined) return "N/A";
   const n = Number(formatUnits(v, decimals));
   return n.toLocaleString("en-US", { maximumFractionDigits: max });
 }
 
 export function fmtUsd(n: number | null | undefined) {
-  if (n === null || n === undefined) return "—";
+  if (n === null || n === undefined) return "N/A";
   if (n >= 1e9) return `$${(n / 1e9).toFixed(2)}B`;
   if (n >= 1e6) return `$${(n / 1e6).toFixed(2)}M`;
   if (n >= 1e3) return `$${(n / 1e3).toFixed(2)}K`;

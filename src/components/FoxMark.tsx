@@ -1,4 +1,4 @@
-/** FoxYsium logo mark — sleepy-eyed fox head in the Genesis art's colours. */
+/** FoxYsium logo mark, sleepy-eyed fox head in the Genesis art's colours. */
 export default function FoxMark({ size = 36, className = "" }: { size?: number; className?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" className={className} aria-hidden="true">

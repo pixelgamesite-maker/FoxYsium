@@ -61,7 +61,7 @@ Genesis mints on OpenSea. OpenSea doesn't support Kinetiq Elysium yet, so the
 site shows "Minting on OpenSea soon" until you set `VITE_OPENSEA_URL`. When the
 drop is live, also set `VITE_GENESIS_ADDRESS` and `VITE_GENESIS_DEPLOY_BLOCK` so
 the Console and Fox pages can read ownership. The allowlist exports to the CSV
-OpenSea asks for — see [`docs/CONTRACTS.md`](docs/CONTRACTS.md#allowlist--opensea).
+OpenSea asks for, see [`docs/CONTRACTS.md`](docs/CONTRACTS.md#allowlist--opensea).
 
 ## FoxFoundry
 
@@ -86,7 +86,7 @@ src/
     ui/             Radix primitives (shadcn), restyled
   hooks/            use-wallet, use-den-auth (Supabase SIWE), use-foxes, use-tx, use-fox-token
   lib/              foxysium-constants (edit copy/numbers here), wagmi, contracts, supabase
-public/             art — see public/README.md
+public/             art, see public/README.md
 supabase/migrations SQL schema + RLS
 ```
 

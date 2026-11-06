@@ -1,9 +1,9 @@
 -- ═══════════════════════════════════════════════════════════════════
--- FoxYsium — initial schema
+-- FoxYsium, initial schema
 -- Auth: Supabase "Sign in with Web3" (Ethereum / EIP-4361).
 -- Every client write is keyed to the signed-in wallet via current_wallet().
 -- Market stats, reputation and activity are written only by the indexer
--- (service role) — clients can read them but never write them.
+-- (service role), clients can read them but never write them.
 -- ═══════════════════════════════════════════════════════════════════
 
 create extension if not exists pgcrypto;

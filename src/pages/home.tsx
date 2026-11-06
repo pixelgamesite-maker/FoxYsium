@@ -33,18 +33,18 @@ function EconomyTiles() {
 
   return (
     <section className="mt-14">
-      <SectionTitle>Locked and staked ${TOKEN_SYMBOL}</SectionTitle>
-      <p className="text-mist -mt-2 mb-5">Read live from the Locker and Staking contracts on Elysium.</p>
+      <SectionTitle>How much ${TOKEN_SYMBOL} the den is holding</SectionTitle>
+      <p className="text-mist -mt-2 mb-5">Straight from the Locker and Staking contracts on Elysium, refreshed every 30 seconds.</p>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-        <StatTile label="Total locked" value={fmtToken(e.totalLocked, 18, 0)} sub={lockedPct !== null ? `${lockedPct}% of supply` : undefined} tone="mint" live={e.live.locker} />
+        <StatTile label="In the locker" value={fmtToken(e.totalLocked, 18, 0)} sub={lockedPct !== null ? `${lockedPct}% of supply` : undefined} tone="mint" live={e.live.locker} />
         <StatTile
-          label="Total staked"
+          label="Staked"
           value={fmtToken(e.totalStaked, 18, 0)}
           sub={stakedPct !== null ? `${stakedPct}% of supply · ${fmtInt(e.stakers)} stakers` : undefined}
           tone="mint"
           live={e.live.staking}
         />
-        <StatTile label="Locked + staked" value={fmtToken(combined, 18, 0)} sub={combinedPct !== null ? `${combinedPct}% of supply` : undefined} tone="fur" live={e.live.locker && e.live.staking} bar={combinedPct} />
+        <StatTile label="Held tight, both combined" value={fmtToken(combined, 18, 0)} sub={combinedPct !== null ? `${combinedPct}% of supply` : undefined} tone="fur" live={e.live.locker && e.live.staking} bar={combinedPct} />
         <StatTile
           label="Genesis minted"
           value={`${fmtInt(e.minted)} / ${SUPPLY.toLocaleString()}`}

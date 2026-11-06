@@ -75,7 +75,7 @@ function Inner() {
           </div>
         </div>
         <p className="text-mist mt-4">
-          We'll confirm allowlist spots before mint. Keep this wallet — it's the one that will be able to mint.
+          We'll confirm allowlist spots before mint. Keep this wallet, since it's the one that will be able to mint.
         </p>
       </div>
     );

@@ -48,7 +48,7 @@ export default function Staking() {
           </ConnectGate>
         ) : (
           <NotLive what="Staking">
-            Staking opens with the $FOX token in phase two. The contract address will be posted here and on our X account — don't
+            Staking opens with the $FOX token in phase two. The contract address will be posted here and on our X account, so don't
             trust it anywhere else.
           </NotLive>
         )}

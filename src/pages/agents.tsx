@@ -48,7 +48,7 @@ export default function Agents() {
       {!POLICY_LIVE && (
         <div className="mb-5">
           <NotLive what="Agent execution">
-            You can set up and save an agent now. It stays a draft — nothing signs or spends — until the execution-policy
+            You can set up and save an agent now. It stays a draft, and nothing signs or spends, until the execution-policy
             contract is deployed and audited.
           </NotLive>
         </div>
