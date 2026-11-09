@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
-import { Router as WouterRouter, Route, Switch } from "wouter";
+import { Router as WouterRouter, Route, Switch, useLocation } from "wouter";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { WalletProvider } from "@/hooks/use-wallet";
@@ -26,7 +27,9 @@ const Terms = lazy(() => import("@/pages/legal").then((m) => ({ default: m.Terms
 const Privacy = lazy(() => import("@/pages/legal").then((m) => ({ default: m.Privacy })));
 
 function Router() {
+  const [location] = useLocation();
   return (
+    <ErrorBoundary resetKey={location}>
     <Suspense
       fallback={
         <div className="py-24 grid place-items-center text-mist">
@@ -55,6 +58,7 @@ function Router() {
         <Route component={NotFound} />
       </Switch>
     </Suspense>
+    </ErrorBoundary>
   );
 }
 

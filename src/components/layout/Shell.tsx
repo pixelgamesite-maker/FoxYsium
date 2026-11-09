@@ -9,7 +9,11 @@ import { cn } from "@/lib/utils";
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
-  useEffect(() => window.scrollTo(0, 0), [location]);
+  // Braces matter: newer Chrome returns a Promise from scrollTo, and React
+  // would try to call that as the effect's cleanup and crash on navigation.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <div className="min-h-dvh flex flex-col">
