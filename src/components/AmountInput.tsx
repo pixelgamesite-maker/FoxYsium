@@ -36,14 +36,14 @@ export default function AmountInput({
           inputMode="decimal"
           autoComplete="off"
           placeholder="0.0"
-          className="flex-1 min-w-0 bg-transparent outline-none text-xl font-bold num"
+          className="flex-1 min-w-0 bg-transparent outline-none text-xl font-semibold num"
           value={value}
           onChange={(e) => {
             const v = e.target.value.replace(",", ".");
             if (/^\d*\.?\d*$/.test(v)) onChange(v);
           }}
         />
-        <span className="text-haze font-semibold">{symbol}</span>
+        <span className="text-haze font-medium">{symbol}</span>
         {max !== undefined && (
           <button type="button" className="btn btn-sm btn-ghost !min-h-[34px]" onClick={() => onChange(formatUnits(max, decimals))}>
             Max

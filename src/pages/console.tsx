@@ -15,7 +15,7 @@ import { fmtToken } from "@/lib/format";
 export default function Console() {
   return (
     <>
-      <PageHeader title="Console" lede="Your Foxes, their vaults, and everything you've set up in the den." />
+      <PageHeader title="Console" lede="Your Foxes, their vaults, and and everything you've set up." />
       <ConnectGate why="to open your Console">
         <Inner />
       </ConnectGate>
@@ -68,7 +68,7 @@ function Inner() {
           </div>
         ) : (
           <EmptyState title="No Foxes in this wallet" action={<ButtonLink href="/genesis">Go to Genesis</ButtonLink>}>
-            Holding a Genesis Fox gives you a vault, agent access and a share of ecosystem rewards.
+            A Genesis Fox comes with a vault, agent access and a share of ecosystem rewards.
           </EmptyState>
         )}
       </section>
@@ -76,7 +76,7 @@ function Inner() {
       {!isSignedIn ? (
         <section className="mt-12 sticker p-6 flex flex-col sm:flex-row sm:items-center gap-4">
           <div className="flex-1">
-            <div className="font-bold text-lg">Sign in to see your agents and allowlist status</div>
+            <div className="font-semibold text-lg">Sign in to see your agents and allowlist status</div>
             <p className="text-mist">One signature, no gas.</p>
           </div>
           <button className="btn btn-fur" onClick={signIn} disabled={signingIn}>
@@ -90,9 +90,9 @@ function Inner() {
             {mine.data?.launches.length ? (
               <ul className="sticker p-2">
                 {mine.data.launches.map((l) => (
-                  <li key={l.id} className="border-b-2 border-dusk-3 last:border-0">
+                  <li key={l.id} className="border-b border-line last:border-0">
                     <Link href={`/foundry/${l.id}`} className="flex items-center justify-between p-3.5 hover:bg-dusk-3 rounded-xl">
-                      <span className="font-bold">
+                      <span className="font-semibold">
                         {l.name} <span className="text-haze">${l.ticker}</span>
                       </span>
                       <span className="chip bg-dusk text-mist capitalize">{l.status}</span>
@@ -109,9 +109,9 @@ function Inner() {
             {mine.data?.agents.length ? (
               <ul className="sticker p-2">
                 {mine.data.agents.map((a) => (
-                  <li key={a.id} className="border-b-2 border-dusk-3 last:border-0">
+                  <li key={a.id} className="border-b border-line last:border-0">
                     <Link href={`/agents?fox=${a.fox_id}`} className="flex items-center justify-between p-3.5 hover:bg-dusk-3 rounded-xl">
-                      <span className="font-bold">
+                      <span className="font-semibold">
                         {AGENTS.find((x) => x.id === a.template)?.name ?? a.template} <span className="text-haze">· Fox #{a.fox_id}</span>
                       </span>
                       <span className="chip bg-dusk text-mist capitalize">{a.status}</span>
@@ -136,8 +136,8 @@ function FoxCard({ id }: { id: number }) {
       <div className="aspect-square bg-dusk">
         <FoxArt id={id} className="h-full w-full" />
       </div>
-      <div className="p-3 border-t-[2.5px] border-ink">
-        <div className="font-extrabold">Fox #{id}</div>
+      <div className="p-3 border-t border-line">
+        <div className="font-semibold">Fox #{id}</div>
         <div className="text-[14px] text-mist">
           {!v.configured ? "Vault pending" : v.deployed ? `Vault · ${fmtToken(v.hype?.value, 18, 3)} HYPE` : "Vault not activated"}
         </div>

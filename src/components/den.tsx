@@ -7,7 +7,7 @@ import { Hourglass } from "lucide-react";
 export function PageHeader({ title, lede, children }: { title: string; lede?: React.ReactNode; children?: React.ReactNode }) {
   return (
     <header className="pt-6 pb-8 md:pt-10 md:pb-10">
-      <h1 className="text-[clamp(2.4rem,9vw,4.25rem)] font-extrabold leading-[0.95]">{title}</h1>
+      <h1 className="text-[clamp(2.4rem,9vw,4.25rem)] font-semibold leading-[0.95]">{title}</h1>
       {lede && <p className="mt-4 text-mist text-[17px] leading-relaxed max-w-[60ch]">{lede}</p>}
       {children && <div className="mt-6 flex flex-wrap gap-3">{children}</div>}
     </header>
@@ -17,7 +17,7 @@ export function PageHeader({ title, lede, children }: { title: string; lede?: Re
 export function SectionTitle({ children, action }: { children: React.ReactNode; action?: React.ReactNode }) {
   return (
     <div className="flex items-end justify-between gap-4 mb-5">
-      <h2 className="text-[clamp(1.6rem,5vw,2.25rem)] font-extrabold leading-none">{children}</h2>
+      <h2 className="text-[clamp(1.6rem,5vw,2.25rem)] font-semibold leading-none">{children}</h2>
       {action}
     </div>
   );
@@ -46,9 +46,9 @@ export function StatTile({
   const color = { belly: "text-belly", fur: "text-fur", mint: "text-mint", lilac: "text-lilac" }[tone];
   return (
     <div className="sticker-sm p-4 md:p-5 flex flex-col min-h-[128px]">
-      <div className="text-[14px] font-semibold text-haze">{label}</div>
+      <div className="text-[14px] font-medium text-haze">{label}</div>
       {live ? (
-        <div className={cn("num mt-2 text-[clamp(1.6rem,6vw,2.3rem)] font-extrabold leading-none", color)}>{value}</div>
+        <div className={cn("num mt-2 text-[clamp(1.6rem,6vw,2.3rem)] font-semibold leading-none", color)}>{value}</div>
       ) : (
         <div className="mt-2 flex items-center gap-2 text-mist font-semibold">
           <Hourglass className="h-4 w-4 text-lilac" /> Not live yet
@@ -71,7 +71,7 @@ export function NotLive({ what, children }: { what: string; children?: React.Rea
     <div className="sticker-sm p-5 flex gap-4 items-start bg-dusk-3/40">
       <Hourglass className="h-6 w-6 text-lilac shrink-0 mt-0.5" />
       <div>
-        <div className="font-bold text-[17px]">{what} isn't live yet</div>
+        <div className="font-semibold text-[17px]">{what} isn't live yet</div>
         <div className="text-mist mt-1 leading-relaxed">{children}</div>
       </div>
     </div>
@@ -80,8 +80,8 @@ export function NotLive({ what, children }: { what: string; children?: React.Rea
 
 export function EmptyState({ title, children, action }: { title: string; children?: React.ReactNode; action?: React.ReactNode }) {
   return (
-    <div className="rounded-[22px] border-[3px] border-dashed border-dusk-3 p-8 text-center">
-      <div className="font-bold text-lg">{title}</div>
+    <div className="rounded-[22px] border border-dashed border-line p-8 text-center">
+      <div className="font-semibold text-lg">{title}</div>
       {children && <div className="text-mist mt-2 max-w-[48ch] mx-auto leading-relaxed">{children}</div>}
       {action && <div className="mt-5 flex justify-center">{action}</div>}
     </div>
@@ -111,7 +111,7 @@ export function ButtonLink({ href, variant = "fur", className, children, externa
 
 export function Row({ k, v, mono }: { k: string; v: React.ReactNode; mono?: boolean }) {
   return (
-    <div className="flex items-center justify-between gap-4 py-2.5 border-b-2 border-dusk-3 last:border-0">
+    <div className="flex items-center justify-between gap-4 py-2.5 border-b border-line last:border-0">
       <span className="text-haze text-[15px]">{k}</span>
       <span className={cn("text-right font-semibold text-[15px] min-w-0 truncate", mono && "font-mono text-[13px]")}>{v}</span>
     </div>

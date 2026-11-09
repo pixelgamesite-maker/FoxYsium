@@ -16,7 +16,7 @@ export default function FoxMark({ size = 36, className = "" }: { size?: number; 
 
 export function Wordmark({ size = 20 }: { size?: number }) {
   return (
-    <span className="font-extrabold tracking-tight leading-none" style={{ fontSize: size }}>
+    <span className="font-semibold tracking-tight leading-none" style={{ fontSize: size }}>
       Fox<span className="text-fur">Y</span>sium
     </span>
   );

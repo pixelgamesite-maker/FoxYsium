@@ -63,11 +63,11 @@ function Inner() {
     return (
       <div className="sticker p-6">
         <div className="flex items-center gap-3">
-          <span className="h-11 w-11 rounded-full bg-mint border-[2.5px] border-ink grid place-items-center">
+          <span className="h-11 w-11 rounded-full bg-mint border border-line grid place-items-center">
             <Check className="h-6 w-6 text-ink" strokeWidth={3} />
           </span>
           <div>
-            <div className="font-extrabold text-xl">You're on the list</div>
+            <div className="font-semibold text-xl">You're on the list</div>
             <div className="text-mist">
               Status: <span className="font-semibold text-belly capitalize">{entry.status}</span>
               {entry.class_pref && <> · hoping for a {entry.class_pref}</>}

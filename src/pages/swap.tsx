@@ -79,10 +79,10 @@ export default function Swap() {
           <SectionTitle>Three steps</SectionTitle>
           <ol className="sticker p-2">
             {STEPS.map((s, i) => (
-              <li key={s.t} className="flex gap-4 p-3.5 border-b-2 border-dusk-3 last:border-0">
-                <span className="num h-8 w-8 rounded-full bg-fur text-ink font-extrabold grid place-items-center shrink-0 border-2 border-ink">{i + 1}</span>
+              <li key={s.t} className="flex gap-4 p-3.5 border-b border-line last:border-0">
+                <span className="num h-8 w-8 rounded-full bg-fur text-ink font-semibold grid place-items-center shrink-0 border border-line">{i + 1}</span>
                 <div>
-                  <div className="font-bold">{s.t}</div>
+                  <div className="font-semibold">{s.t}</div>
                   <p className="text-mist leading-snug mt-0.5">{s.b}</p>
                 </div>
               </li>

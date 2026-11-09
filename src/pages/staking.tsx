@@ -16,7 +16,7 @@ import { fmtInt, fmtToken, pct } from "@/lib/format";
 import { TOKEN_SYMBOL } from "@/lib/foxysium-constants";
 
 const HOW = [
-  { t: "Rewards come from revenue", b: "Foundry, market and agent fees fund the pool. When the den earns more, the pool grows; when it earns less, so does your share." },
+  { t: "Rewards come from revenue", b: "Foundry, market and agent fees fund the pool. When the ecosystem earns more, the pool grows; when it earns less, so does your share." },
   { t: "Your share follows the pool", b: "You earn in proportion to your stake while it's active. There's no fixed APY and none is implied." },
   { t: "Principal unlocks gradually", b: "Staked $FOX unlocks over a ramp. Adding more restarts the ramp for the whole position, so top up deliberately." },
   { t: "Claim whenever", b: "Accrued rewards can be claimed at any time without touching your principal." },
@@ -56,10 +56,10 @@ export default function Staking() {
           <SectionTitle>How it works</SectionTitle>
           <ol className="sticker p-2">
             {HOW.map((h, i) => (
-              <li key={h.t} className="flex gap-4 p-3.5 border-b-2 border-dusk-3 last:border-0">
-                <span className="num h-8 w-8 rounded-full bg-fur text-ink font-extrabold grid place-items-center shrink-0 border-2 border-ink">{i + 1}</span>
+              <li key={h.t} className="flex gap-4 p-3.5 border-b border-line last:border-0">
+                <span className="num h-8 w-8 rounded-full bg-fur text-ink font-semibold grid place-items-center shrink-0 border border-line">{i + 1}</span>
                 <div>
-                  <div className="font-bold">{h.t}</div>
+                  <div className="font-semibold">{h.t}</div>
                   <p className="text-mist leading-snug mt-0.5">{h.b}</p>
                 </div>
               </li>
@@ -111,16 +111,16 @@ function StakePanel() {
           ["Unlocked", unlocked],
         ].map(([k, v]) => (
           <div key={k as string}>
-            <div className="text-haze text-[14px] font-semibold">{k as string}</div>
-            <div className="num text-xl font-extrabold mt-0.5">{fmtToken(v as bigint | undefined)}</div>
+            <div className="text-haze text-[14px] font-medium">{k as string}</div>
+            <div className="num text-xl font-semibold mt-0.5">{fmtToken(v as bigint | undefined)}</div>
           </div>
         ))}
       </div>
 
       <Tabs defaultValue="stake">
-        <TabsList className="grid grid-cols-2 bg-dusk border-[2.5px] border-ink rounded-xl p-1 h-auto">
-          <TabsTrigger value="stake" className="rounded-lg py-2 font-bold data-[state=active]:bg-fur data-[state=active]:text-ink">Stake</TabsTrigger>
-          <TabsTrigger value="withdraw" className="rounded-lg py-2 font-bold data-[state=active]:bg-fur data-[state=active]:text-ink">Withdraw</TabsTrigger>
+        <TabsList className="grid grid-cols-2 bg-dusk border border-line rounded-xl p-1 h-auto">
+          <TabsTrigger value="stake" className="rounded-lg py-2 font-semibold data-[state=active]:bg-fur data-[state=active]:text-ink">Stake</TabsTrigger>
+          <TabsTrigger value="withdraw" className="rounded-lg py-2 font-semibold data-[state=active]:bg-fur data-[state=active]:text-ink">Withdraw</TabsTrigger>
         </TabsList>
         <TabsContent value="stake" className="mt-5 space-y-4">
           <AmountInput id="stake" label="Amount to stake" value={amt} onChange={setAmt} max={tok.balance} decimals={tok.decimals} />

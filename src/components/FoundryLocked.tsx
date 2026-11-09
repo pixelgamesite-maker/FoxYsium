@@ -1,49 +1,49 @@
-import { Lock, KeyRound } from "lucide-react";
+import { Lock } from "lucide-react";
 import { ButtonLink } from "@/components/den";
-import { HERO_ART } from "@/lib/foxysium-constants";
+import { ART } from "@/lib/foxysium-constants";
 import { cn } from "@/lib/utils";
 
 const INSIDE = [
-  { t: "Your coin, your ticker", b: "Name it, give it art and a story, and it's trading on Elysium in minutes." },
-  { t: "Paired with HYPE", b: "Liquidity from the first block, on the chain where Hyperliquid's money already lives." },
-  { t: "Fees find their way home", b: "A cut of every trade flows to the Fox behind it, straight into its vault." },
+  { t: "Your own coin", b: "Name, ticker and artwork, trading on Elysium within minutes." },
+  { t: "Paired with HYPE", b: "Liquidity from the first block, where Hyperliquid's capital already lives." },
+  { t: "Fees routed to your Fox", b: "A share of every trade settles into the creator Fox's vault." },
 ];
 
 /** Teaser for the locked FoxFoundry. `compact` is the home-page version. */
 export default function FoundryLocked({ compact = false }: { compact?: boolean }) {
+  const art = ART[2];
   return (
     <section className={cn("sticker overflow-hidden p-0", !compact && "mt-6 md:mt-10")}>
-      <div className="grid md:grid-cols-[1.15fr_1fr]">
-        <div className="p-5 sm:p-7 md:p-9">
-          <span className="chip bg-ink text-belly">
-            <Lock className="h-3.5 w-3.5" /> Locked
+      <div className="grid md:grid-cols-[1.2fr_1fr]">
+        <div className="p-6 sm:p-8 md:p-12">
+          <span className="chip text-mist">
+            <Lock className="h-3.5 w-3.5 text-fur" /> Opens after mint
           </span>
           {compact ? (
-            <h2 className="mt-4 text-[clamp(1.9rem,6vw,2.8rem)] font-extrabold leading-[0.95]">Something's brewing in the Foundry</h2>
+            <h2 className="mt-5 text-[clamp(1.8rem,5.5vw,2.6rem)] font-semibold leading-[1.05]">FoxFoundry</h2>
           ) : (
-            <h1 className="mt-4 text-[clamp(2.4rem,9vw,4.25rem)] font-extrabold leading-[0.95]">FoxFoundry is locked</h1>
+            <h1 className="mt-5 text-[clamp(2.3rem,8vw,3.8rem)] font-semibold leading-[1.02]">FoxFoundry</h1>
           )}
-          <p className="mt-4 text-mist text-[17px] leading-relaxed max-w-[50ch]">
-            Soon, Genesis holders will be able to spin up their own coin right here, launched from the den and backed by
-            the Fox that made it. The doors open after mint.
+          <p className="mt-4 text-mist text-[17px] leading-relaxed max-w-[48ch]">
+            A launch venue for Genesis holders. Each launch is backed by the Fox that created it, with its terms shown up front.
           </p>
 
-          <ul className="mt-6 space-y-3">
+          <dl className="mt-7 grid gap-4">
             {INSIDE.map((x) => (
-              <li key={x.t} className="flex gap-3">
-                <span className="mt-1.5 h-3 w-3 rounded-full bg-fur border-2 border-ink shrink-0" />
-                <span>
-                  <span className="font-bold">{x.t}.</span> <span className="text-mist">{x.b}</span>
-                </span>
-              </li>
+              <div key={x.t} className="border-l-2 border-fur/70 pl-4">
+                <dt className="font-semibold">{x.t}</dt>
+                <dd className="text-mist mt-0.5">{x.b}</dd>
+              </div>
             ))}
-          </ul>
+          </dl>
 
-          <div className="mt-7 flex flex-wrap gap-3">
-            <ButtonLink href="/genesis#allowlist">
-              <KeyRound className="h-4 w-4" /> Get a key: join the allowlist
-            </ButtonLink>
-            {!compact && (
+          <div className="mt-8 flex flex-wrap gap-3">
+            <ButtonLink href="/genesis#allowlist">Join the allowlist</ButtonLink>
+            {compact ? (
+              <ButtonLink href="/foundry" variant="ghost">
+                Learn more
+              </ButtonLink>
+            ) : (
               <ButtonLink href="/docs#foundry" variant="ghost">
                 How it will work
               </ButtonLink>
@@ -51,14 +51,12 @@ export default function FoundryLocked({ compact = false }: { compact?: boolean }
           </div>
         </div>
 
-        <div className="relative min-h-[260px] md:min-h-0 bg-mint border-t-[3px] md:border-t-0 md:border-l-[3px] border-ink overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.18]"
-            style={{ backgroundImage: "repeating-linear-gradient(45deg, #0E0A1C 0 3px, transparent 3px 18px)" }}
-          />
-          <img src={HERO_ART} alt="" className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[88%] w-auto max-w-none -scale-x-100 brightness-[0.55] saturate-50" />
-          <div className="absolute top-5 left-5 h-20 w-20 rounded-[24px] bg-belly border-[3px] border-ink shadow-[5px_5px_0_var(--color-ink)] grid place-items-center rotate-[-6deg]">
-            <Lock className="h-10 w-10 text-ink" strokeWidth={2.6} />
+        <div className="relative aspect-[5/4] md:aspect-auto md:min-h-[440px] overflow-hidden" style={{ backgroundColor: art.bg }}>
+          <img src={art.src} alt={art.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover object-[50%_22%] brightness-[0.62] saturate-[0.8]" />
+          <div className="absolute inset-0 grid place-items-center">
+            <span className="h-16 w-16 rounded-full bg-black/45 backdrop-blur-md border border-white/15 grid place-items-center">
+              <Lock className="h-7 w-7 text-white" />
+            </span>
           </div>
         </div>
       </div>

@@ -63,12 +63,12 @@ function TierTable({ selected, onPick }: { selected?: number; onPick?: (d: numbe
           onClick={() => onPick?.(t.days)}
           aria-pressed={selected === t.days}
           className={cn(
-            "w-full flex items-center justify-between gap-3 p-3.5 rounded-xl text-left border-[2.5px] border-transparent",
-            selected === t.days && "bg-fur text-ink border-ink",
+            "w-full flex items-center justify-between gap-3 p-3.5 rounded-xl text-left border border-transparent",
+            selected === t.days && "bg-fur text-ink border-line",
             onPick && selected !== t.days && "hover:bg-dusk-3",
           )}
         >
-          <span className="num font-extrabold text-lg">{t.days} days</span>
+          <span className="num font-semibold text-lg">{t.days} days</span>
           <span className={cn("font-semibold", selected === t.days ? "text-ink" : "text-mist")}>{t.perk}</span>
         </button>
       ))}
@@ -116,7 +116,7 @@ function LockPanel() {
         <label className="flex gap-3 items-start text-mist cursor-pointer">
           <input type="checkbox" className="mt-1 h-5 w-5 accent-[var(--color-fur)]" checked={confirm} onChange={(e) => setConfirm(e.target.checked)} />
           <span>
-            I understand these tokens can't be withdrawn before <span className="font-bold text-belly">{unlockDate}</span>, by me or anyone else.
+            I understand these tokens can't be withdrawn before <span className="font-semibold text-belly">{unlockDate}</span>, by me or anyone else.
           </span>
         </label>
         {tooMuch && <p className="text-rose font-semibold">That's more $FOX than this wallet holds.</p>}
@@ -147,10 +147,10 @@ function LockPanel() {
             {locks.map((l) => {
               const open = !l.withdrawn && l.unlockAt <= now;
               return (
-                <li key={String(l.id)} className="flex items-center gap-3 p-3.5 border-b-2 border-dusk-3 last:border-0">
+                <li key={String(l.id)} className="flex items-center gap-3 p-3.5 border-b border-line last:border-0">
                   {open || l.withdrawn ? <Unlock className="h-5 w-5 text-mint shrink-0" /> : <LockIcon className="h-5 w-5 text-lilac shrink-0" />}
                   <div className="flex-1 min-w-0">
-                    <div className="num font-extrabold">{fmtToken(l.amount)} ${TOKEN_SYMBOL}</div>
+                    <div className="num font-semibold">{fmtToken(l.amount)} ${TOKEN_SYMBOL}</div>
                     <div className="text-haze text-[14px]">
                       {l.withdrawn ? "Withdrawn" : open ? "Unlocked" : `Unlocks ${new Date(Number(l.unlockAt) * 1000).toLocaleDateString()}`}
                     </div>

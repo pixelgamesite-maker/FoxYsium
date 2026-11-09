@@ -46,7 +46,7 @@ export const GROUPS: NavGroup[] = [
   },
 ];
 
-export const HOME: NavItem = { path: "/", label: "Home", blurb: "Back to the den", icon: Home };
+export const HOME: NavItem = { path: "/", label: "Home", blurb: "Home", icon: Home };
 
 /** Shown inline in the desktop header. Everything else lives in the menu. */
 export const HEADER_LINKS = ["/genesis", "/staking", "/agents", "/console"];

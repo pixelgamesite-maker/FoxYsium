@@ -26,7 +26,7 @@ export function ConnectGate({
     return (
       <div className="sticker p-6 text-center">
         <Wallet className="h-8 w-8 mx-auto text-fur" />
-        <div className="mt-3 font-bold text-lg">Connect a wallet {why}</div>
+        <div className="mt-3 font-semibold text-lg">Connect a wallet {why}</div>
         <button className="btn btn-fur mt-5" onClick={() => setOpen(true)}>
           Connect wallet
         </button>
@@ -38,7 +38,7 @@ export function ConnectGate({
     return (
       <div className="sticker p-6 text-center">
         <PenLine className="h-8 w-8 mx-auto text-fur" />
-        <div className="mt-3 font-bold text-lg">Sign in {why}</div>
+        <div className="mt-3 font-semibold text-lg">Sign in {why}</div>
         <p className="text-mist mt-2 max-w-[44ch] mx-auto">
           Your wallet will ask you to sign a message. It proves the wallet is yours and costs no gas.
         </p>

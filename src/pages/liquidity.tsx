@@ -21,10 +21,10 @@ export default function Liquidity() {
         {POOLS.map((p) => (
           <div key={p.pair} className="sticker-sm p-5 flex flex-col">
             <div className="flex -space-x-2">
-              <span className="h-10 w-10 rounded-full border-[2.5px] border-ink" style={{ background: p.a }} />
-              <span className="h-10 w-10 rounded-full border-[2.5px] border-ink" style={{ background: p.b }} />
+              <span className="h-10 w-10 rounded-full border border-line" style={{ background: p.a }} />
+              <span className="h-10 w-10 rounded-full border border-line" style={{ background: p.b }} />
             </div>
-            <div className="mt-3 font-extrabold text-xl">{p.pair}</div>
+            <div className="mt-3 font-semibold text-xl">{p.pair}</div>
             <p className="text-mist mt-1 leading-snug flex-1">{p.note}</p>
             <div className="mt-4">
               {live ? (

@@ -21,7 +21,7 @@ export default function Leaderboard() {
       <div className="flex flex-wrap gap-2 mb-6">
         {LEVELS.map((l) => (
           <span key={l.name} className="chip bg-dusk-2 text-mist">
-            <span className="font-extrabold text-belly">{l.name}</span> {l.min.toLocaleString()}+
+            <span className="font-semibold text-belly">{l.name}</span> {l.min.toLocaleString()}+
           </span>
         ))}
       </div>
@@ -45,18 +45,18 @@ export default function Leaderboard() {
                 const cls = CLASSES.find((c) => c.name === r.fox_class);
                 const mine = me && r.owner_wallet?.toLowerCase() === me;
                 return (
-                  <tr key={r.fox_id} className={cn("border-t-2 border-dusk-3", mine && "bg-fur/15")}>
-                    <td className={cn("py-3 pl-4 pr-2 num font-extrabold text-lg", i < 3 ? "text-fur" : "text-haze")}>{i + 1}</td>
+                  <tr key={r.fox_id} className={cn("border-t border-line", mine && "bg-fur/15")}>
+                    <td className={cn("py-3 pl-4 pr-2 num font-semibold text-lg", i < 3 ? "text-fur" : "text-haze")}>{i + 1}</td>
                     <td className="py-3 px-2">
-                      <Link href={`/fox/${r.fox_id}`} className="font-bold hover:text-fur inline-flex items-center gap-2">
-                        <span className="h-3.5 w-3.5 rounded-sm border-2 border-ink" style={{ background: cls?.color ?? "#34296a" }} />
+                      <Link href={`/fox/${r.fox_id}`} className="font-semibold hover:text-fur inline-flex items-center gap-2">
+                        <span className="h-3.5 w-3.5 rounded-sm border border-line" style={{ background: cls?.color ?? "#34296a" }} />
                         Fox #{r.fox_id}
                         {mine && <span className="chip bg-fur text-ink !py-0 text-[12px]">You</span>}
                       </Link>
                     </td>
                     <td className="py-3 px-2 text-mist hidden sm:table-cell">{levelFor(r.points).name}</td>
                     <td className="py-3 px-2 font-mono text-[13px] text-haze hidden md:table-cell">{short(r.owner_wallet)}</td>
-                    <td className="py-3 pl-2 pr-4 text-right num font-extrabold">{r.points.toLocaleString()}</td>
+                    <td className="py-3 pl-2 pr-4 text-right num font-semibold">{r.points.toLocaleString()}</td>
                   </tr>
                 );
               })}

@@ -1,18 +1,17 @@
 import { useState } from "react";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 import { Wallet, Bot, Trophy, Fingerprint, Search } from "lucide-react";
 import { PageHeader, SectionTitle, Row, ButtonLink } from "@/components/den";
 import AllowlistForm from "@/components/AllowlistForm";
-import FoxArt from "@/components/FoxArt";
 import { useEconomy, useAllowlistCount } from "@/hooks/use-foxes";
 import { useHashScroll } from "@/hooks/use-hash-scroll";
-import { CLASSES, HERO_ART, MINT_PLATFORM, MINT_PRICE, MINT_STATUS, OPENSEA_URL, RARITY, SUPPLY } from "@/lib/foxysium-constants";
+import { ART, CLASSES, MINT_PLATFORM, MINT_PRICE, MINT_STATUS, OPENSEA_URL, RARITY, SUPPLY } from "@/lib/foxysium-constants";
 import { CONTRACTS } from "@/lib/contracts";
 import { elysium, explorerAddress } from "@/lib/wagmi";
 import { fmtInt, short } from "@/lib/format";
 
 const OWN = [
-  { icon: Fingerprint, title: "An identity", body: "Unique art, a class and a rarity tier. Your Fox is your face in the den." },
+  { icon: Fingerprint, title: "An identity", body: "Original art, a class and a rarity tier. Your Fox is your identity across the ecosystem." },
   { icon: Wallet, title: "Its own vault", body: "An ERC-6551 account tied to the token. Rewards land here and travel with the Fox when it changes hands." },
   { icon: Bot, title: "An optional agent", body: "Switch on an AI operator for this Fox, with spending limits enforced by contract." },
   { icon: Trophy, title: "A record", body: "Reputation that grows with what the Fox actually does: launches, governance, market activity." },
@@ -28,7 +27,7 @@ export default function Genesis() {
       <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 items-end">
         <PageHeader
           title="Genesis"
-          lede={`${SUPPLY.toLocaleString()} Foxes. That's the whole collection, fixed forever. Every one is a member of the den with its own wallet, and holding one is how you take part in everything FoxYsium builds.`}
+          lede={`${SUPPLY.toLocaleString()} Foxes, fixed forever. Each one carries its own wallet, and holding one is how you take part in everything FoxYsium builds.`}
         >
           {OPENSEA_URL ? (
             <>
@@ -53,7 +52,7 @@ export default function Genesis() {
           {allowlisted !== undefined && <Row k="On the allowlist" v={fmtInt(allowlisted)} />}
           <Row
             k="Contract"
-            mono
+            mono={!!CONTRACTS.genesis}
             v={
               CONTRACTS.genesis ? (
                 <a className="underline underline-offset-2" href={explorerAddress(CONTRACTS.genesis)} target="_blank" rel="noreferrer">
@@ -73,7 +72,7 @@ export default function Genesis() {
           {OWN.map((o) => (
             <div key={o.title} className="sticker-sm p-5">
               <o.icon className="h-7 w-7 text-fur" strokeWidth={2.2} />
-              <div className="mt-3 font-extrabold text-xl">{o.title}</div>
+              <div className="mt-3 font-semibold text-xl">{o.title}</div>
               <p className="mt-1.5 text-mist leading-snug">{o.body}</p>
             </div>
           ))}
@@ -85,11 +84,11 @@ export default function Genesis() {
           <SectionTitle>Classes</SectionTitle>
           <div className="sticker p-2">
             {CLASSES.map((c) => (
-              <div key={c.name} className="flex gap-4 p-3.5 border-b-2 border-dusk-3 last:border-0">
-                <span className="h-10 w-10 rounded-xl border-[2.5px] border-ink shrink-0" style={{ background: c.color }} />
+              <div key={c.name} className="flex gap-4 p-3.5 border-b border-line last:border-0">
+                <span className="mt-2 h-2.5 w-2.5 rounded-full shrink-0" style={{ background: c.color }} />
                 <div>
-                  <div className="font-extrabold text-lg leading-tight">
-                    {c.name} <span className="text-haze font-semibold text-[15px]">· {c.role}</span>
+                  <div className="font-semibold text-lg leading-tight">
+                    {c.name} <span className="text-haze font-medium text-[15px]">· {c.role}</span>
                   </div>
                   <p className="text-mist mt-0.5 leading-snug">{c.perk}</p>
                 </div>
@@ -133,8 +132,8 @@ export default function Genesis() {
             Allowlist wallets mint on {MINT_PLATFORM} before the public phase. Connect the wallet you'll mint with and sign
             a message to prove it's yours. No gas, no approvals.
           </p>
-          <div className="mt-6 hidden lg:block sticker overflow-hidden p-0 bg-gold h-[280px] relative">
-            <img src={HERO_ART} alt="" className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[96%] w-auto max-w-none -scale-x-100" />
+          <div className="mt-6 hidden lg:block sticker overflow-hidden p-0 aspect-[4/3] relative" style={{ backgroundColor: ART[4].bg }}>
+            <img src={ART[4].src} alt={ART[4].alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover object-[50%_20%]" />
           </div>
         </div>
         <AllowlistForm />
@@ -146,12 +145,30 @@ export default function Genesis() {
 function Gallery() {
   const [, nav] = useLocation();
   const [q, setQ] = useState("");
-  const ids = Array.from({ length: 12 }, (_, i) => i + 1);
   return (
     <section className="mt-16">
-      <SectionTitle>The collection</SectionTitle>
+      <SectionTitle
+        action={
+          OPENSEA_URL ? (
+            <a href={OPENSEA_URL} target="_blank" rel="noreferrer" className="font-medium text-fur-2 hover:underline underline-offset-4 shrink-0">
+              Browse on {MINT_PLATFORM}
+            </a>
+          ) : undefined
+        }
+      >
+        A first look
+      </SectionTitle>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        {ART.map((a) => (
+          <figure key={a.src} className="sticker-sm overflow-hidden p-0 aspect-square" style={{ backgroundColor: a.bg }}>
+            <img src={a.sm} srcSet={`${a.sm} 560w, ${a.src} 1200w`} sizes="(min-width: 768px) 33vw, 50vw" alt={a.alt} loading="lazy" className="h-full w-full object-cover" />
+          </figure>
+        ))}
+      </div>
+      <p className="text-haze text-[14px] mt-3">Previews from the collection. Token numbers are assigned at mint.</p>
+
       <form
-        className="flex gap-2 mb-5 max-w-md"
+        className="flex gap-2 mt-8 max-w-md"
         onSubmit={(e) => {
           e.preventDefault();
           const n = Number(q);
@@ -159,32 +176,13 @@ function Gallery() {
         }}
       >
         <label htmlFor="foxq" className="sr-only">
-          Find a Fox by number
+          Look up a Fox by number
         </label>
-        <input id="foxq" className="field" inputMode="numeric" placeholder={`Find a Fox, 1–${SUPPLY}`} value={q} onChange={(e) => setQ(e.target.value.replace(/\D/g, ""))} />
-        <button className="btn btn-fur !px-0 w-12 shrink-0" aria-label="Find Fox">
+        <input id="foxq" className="field" inputMode="numeric" placeholder={`Look up a Fox, 1 to ${SUPPLY}`} value={q} onChange={(e) => setQ(e.target.value.replace(/\D/g, ""))} />
+        <button className="btn btn-fur !px-0 w-12 shrink-0" aria-label="Look up Fox">
           <Search className="h-5 w-5" />
         </button>
       </form>
-      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-        {ids.map((id, i) => (
-          <Link key={id} href={`/fox/${id}`} className="sticker-sm overflow-hidden p-0 block group">
-            <div className="aspect-square bg-dusk">
-              <FoxArt id={id} className="h-full w-full" tint={CLASSES[i % 5].color} />
-            </div>
-            <div className="px-2.5 py-2 border-t-[2.5px] border-ink font-bold text-[14px] group-hover:text-fur">Fox #{id}</div>
-          </Link>
-        ))}
-      </div>
-      <p className="text-haze text-[14px] mt-3">
-        Art reveals at mint. Until then, every Fox is a silhouette.
-        {OPENSEA_URL && (
-          <>
-            {" "}
-            <a href={OPENSEA_URL} target="_blank" rel="noreferrer" className="text-fur-2 underline underline-offset-2">Browse on {MINT_PLATFORM}</a>
-          </>
-        )}
-      </p>
     </section>
   );
 }

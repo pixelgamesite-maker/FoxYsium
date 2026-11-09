@@ -16,13 +16,13 @@ export default function Guide() {
   const { isConnected, isWrongNetwork, switchToElysium } = useWallet();
   return (
     <>
-      <PageHeader title="Getting started" lede="From no wallet to a working Fox in seven steps. Skip the ones you've already done." />
+      <PageHeader title="Getting started" lede="Seven steps from a new wallet to an active Fox. Skip any you've already completed." />
       <ol className="space-y-4 max-w-3xl">
         {STEPS.map((s, i) => (
           <li key={s.t} className="sticker-sm p-5 flex gap-4">
-            <span className="num h-10 w-10 rounded-full bg-fur text-ink font-extrabold text-lg grid place-items-center shrink-0 border-[2.5px] border-ink">{i + 1}</span>
+            <span className="num h-10 w-10 rounded-full bg-fur text-ink font-semibold text-lg grid place-items-center shrink-0 border border-line">{i + 1}</span>
             <div className="flex-1">
-              <div className="font-extrabold text-xl">{s.t}</div>
+              <div className="font-semibold text-xl">{s.t}</div>
               <p className="text-mist mt-1 leading-relaxed">{s.b}</p>
               {s.cta === "network" ? (
                 isConnected && isWrongNetwork ? (

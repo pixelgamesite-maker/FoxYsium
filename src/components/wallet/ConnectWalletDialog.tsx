@@ -34,7 +34,7 @@ export function ConnectWalletDialog({ open, onOpenChange }: { open: boolean; onO
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sticker !rounded-[22px] bg-dusk-2 text-belly w-[calc(100%-32px)] max-w-md grid-cols-[minmax(0,1fr)] p-6">
         <DialogHeader className="text-left">
-          <DialogTitle className="text-2xl font-extrabold">
+          <DialogTitle className="text-2xl font-semibold">
             {isConnected && isWrongNetwork ? "Switch to Elysium" : "Connect a wallet"}
           </DialogTitle>
           <DialogDescription className="text-mist text-[15px]">
@@ -59,13 +59,13 @@ export function ConnectWalletDialog({ open, onOpenChange }: { open: boolean; onO
                   key={c.uid}
                   onClick={() => onPick(c.id)}
                   disabled={!!pendingConnectorId}
-                  className="flex items-center gap-4 p-3.5 text-left rounded-2xl border-[2.5px] border-ink bg-dusk hover:bg-dusk-3 transition-colors disabled:opacity-60"
+                  className="flex items-center gap-4 p-3.5 text-left rounded-2xl border border-line bg-dusk hover:bg-dusk-3 transition-colors disabled:opacity-60"
                 >
-                  <span className="h-11 w-11 rounded-xl border-[2.5px] border-ink bg-fur grid place-items-center shrink-0 overflow-hidden">
+                  <span className="h-11 w-11 rounded-xl border border-line bg-fur grid place-items-center shrink-0 overflow-hidden">
                     {c.icon ? <img src={c.icon} alt="" className="h-7 w-7" /> : <Icon className="h-5 w-5 text-ink" />}
                   </span>
                   <span className="flex-1 min-w-0">
-                    <span className="block font-bold">{name}</span>
+                    <span className="block font-semibold">{name}</span>
                     <span className="block text-[14px] text-haze truncate">{meta.hint}</span>
                   </span>
                   {pendingConnectorId === c.id && <Loader2 className="h-5 w-5 animate-spin text-fur" />}

@@ -15,7 +15,15 @@ export const FOUNDRY_LOCKED = import.meta.env.VITE_FOUNDRY_OPEN !== "true";
 // Base URL for per-token art. Point at IPFS/Arweave once metadata is pinned,
 // e.g. "https://ipfs.io/ipfs/<cid>/", the site appends `${id}.png`.
 export const ART_BASE_URL = "/foxes/";
-export const HERO_ART = "/fox-hero.webp";
+// Genesis artwork previews (public/art, generated from public/1.png … 6.png).
+export const ART = [
+  { src: "/art/fox-1.webp", sm: "/art/fox-1-sm.webp", bg: "#FE7F03", alt: "A Genesis Fox in a shirt and blue tie, holding up a coin" },
+  { src: "/art/fox-2.webp", sm: "/art/fox-2-sm.webp", bg: "#F15B0E", alt: "A Genesis Fox in sunglasses, straightening his tie" },
+  { src: "/art/fox-3.webp", sm: "/art/fox-3-sm.webp", bg: "#4B3649", alt: "A violet Genesis Fox in a tiger-head hood and dark cardigan" },
+  { src: "/art/fox-4.webp", sm: "/art/fox-4-sm.webp", bg: "#027BFE", alt: "A black and white Genesis Fox in heavy glasses and a sailor cap" },
+  { src: "/art/fox-5.webp", sm: "/art/fox-5-sm.webp", bg: "#AC8EFE", alt: "A red and yellow Genesis Fox wearing a burger hat and a #1 vest" },
+  { src: "/art/fox-6.webp", sm: "/art/fox-6-sm.webp", bg: "#58CAFC", alt: "A golden Genesis Fox in a hoodie with a bird mask and backpack" },
+] as const;
 
 // ── Links ──────────────────────────────────────────────────────────
 const env = import.meta.env;

@@ -1,19 +1,21 @@
 import { ButtonLink } from "@/components/den";
-import { HERO_ART } from "@/lib/foxysium-constants";
+import { ART } from "@/lib/foxysium-constants";
 
 export default function NotFound() {
+  const art = ART[5];
   return (
-    <div className="py-16 grid md:grid-cols-2 gap-8 items-center">
+    <div className="py-16 grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <h1 className="text-[clamp(2.6rem,10vw,4.5rem)] font-extrabold leading-[0.95]">This trail goes nowhere</h1>
-        <p className="text-mist text-lg mt-4 max-w-[44ch]">The page you followed doesn't exist, or it moved. Head back to the den and pick another path.</p>
-        <div className="mt-6 flex gap-3">
-          <ButtonLink href="/">Back to the den</ButtonLink>
-          <ButtonLink href="/genesis" variant="ghost">See Genesis</ButtonLink>
+        <div className="text-fur font-medium">404</div>
+        <h1 className="mt-2 text-[clamp(2.4rem,9vw,4rem)] font-semibold leading-[1.02]">Page not found</h1>
+        <p className="text-mist text-lg mt-4 max-w-[44ch]">The page you followed doesn't exist or has moved.</p>
+        <div className="mt-7 flex gap-3">
+          <ButtonLink href="/">Go home</ButtonLink>
+          <ButtonLink href="/genesis" variant="ghost">View Genesis</ButtonLink>
         </div>
       </div>
-      <div className="sticker overflow-hidden p-0 bg-lilac h-[320px] relative">
-        <img src={HERO_ART} alt="" className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[95%] w-auto max-w-none opacity-90 grayscale-[30%]" />
+      <div className="sticker overflow-hidden p-0 aspect-square max-w-[460px] w-full md:justify-self-end" style={{ backgroundColor: art.bg }}>
+        <img src={art.src} alt={art.alt} className="h-full w-full object-cover" />
       </div>
     </div>
   );

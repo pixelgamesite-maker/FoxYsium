@@ -30,7 +30,7 @@ export default function Docs() {
         </nav>
       </aside>
       <div className="min-w-0">
-        <PageHeader title="How FoxYsium works" lede="The short version of every product in the den, and what each one does with your Fox." />
+        <PageHeader title="How FoxYsium works" lede="A concise overview of each product and what it does with your Fox." />
         <article className="prose-den">
           <h2 id="genesis" className="scroll-mt-24">Genesis</h2>
           <p>

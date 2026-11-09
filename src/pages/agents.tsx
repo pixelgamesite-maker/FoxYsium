@@ -26,7 +26,7 @@ export default function Agents() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {AGENTS.map((a) => (
             <div key={a.id} className="sticker-sm p-5">
-              <div className="font-extrabold text-xl">{a.name}</div>
+              <div className="font-semibold text-xl">{a.name}</div>
               <p className="text-mist mt-1 leading-snug">{a.does}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {a.perms.length ? (
@@ -166,9 +166,9 @@ function Configurator() {
 
         <div>
           <div className="label">Allowed actions</div>
-          <ul className="rounded-2xl border-[2.5px] border-ink bg-dusk overflow-hidden">
+          <ul className="rounded-2xl border border-line bg-dusk overflow-hidden">
             {PERMISSIONS.map((p) => (
-              <li key={p.id} className="flex items-center gap-3 px-4 py-3 border-b-2 border-dusk-3 last:border-0">
+              <li key={p.id} className="flex items-center gap-3 px-4 py-3 border-b border-line last:border-0">
                 <Switch id={`p-${p.id}`} checked={perms.includes(p.id)} onCheckedChange={() => togglePerm(p.id)} />
                 <label htmlFor={`p-${p.id}`} className="flex-1 cursor-pointer">{p.label}</label>
                 <span className={cn("chip text-[12px] !py-0", p.risk === "high" ? "bg-rose text-ink" : p.risk === "medium" ? "bg-gold text-ink" : "bg-mint text-ink")}>{p.risk}</span>
@@ -188,13 +188,13 @@ function Configurator() {
       </div>
 
       <aside className="sticker p-5 lg:sticky lg:top-24">
-        <div className="text-haze font-semibold text-[15px]">Summary</div>
-        <div className="mt-2 font-extrabold text-2xl">
+        <div className="text-haze font-medium text-[15px]">Summary</div>
+        <div className="mt-2 font-semibold text-2xl">
           {AGENTS.find((a) => a.id === template)!.name} {fox !== null && <span className="text-fur">for Fox #{fox}</span>}
         </div>
         <ul className="mt-4 space-y-2 text-mist">
-          <li>Up to <span className="font-bold text-belly num">${perTx.toLocaleString()}</span> per transaction</li>
-          <li>Up to <span className="font-bold text-belly num">${daily.toLocaleString()}</span> per day</li>
+          <li>Up to <span className="font-semibold text-belly num">${perTx.toLocaleString()}</span> per transaction</li>
+          <li>Up to <span className="font-semibold text-belly num">${daily.toLocaleString()}</span> per day</li>
           <li>{perms.length ? `${perms.length} allowed action${perms.length > 1 ? "s" : ""}` : "Read-only, can't sign anything"}</li>
           <li>Only through this Fox's vault, never your main wallet</li>
         </ul>

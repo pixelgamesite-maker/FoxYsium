@@ -36,7 +36,7 @@ function FoundryOpen() {
     <>
       <PageHeader
         title="FoxFoundry"
-        lede="Community tokens launched from the den. Every launch shows its supply, creator fees and allocations up front, and links back to the Fox that made it."
+        lede="Community tokens launched by Genesis holders. Every launch shows its supply, creator fees and allocations up front, and links back to the Fox that made it."
       >
         <ButtonLink href="/foundry/new">Start a launch</ButtonLink>
         <ButtonLink href="/docs#foundry" variant="ghost">

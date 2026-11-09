@@ -44,8 +44,8 @@ function Profile({ id }: { id: number }) {
         <div className="aspect-square bg-dusk">
           <FoxArt id={id} className="h-full w-full" />
         </div>
-        <div className="p-5 border-t-[3px] border-ink">
-          <h1 className="text-4xl font-extrabold">Fox #{id}</h1>
+        <div className="p-5 border-t border-line">
+          <h1 className="text-4xl font-semibold">Fox #{id}</h1>
           <div className="mt-1 text-mist">
             {rep?.fox_class ?? "Class revealed at mint"} · <span className="text-fur font-semibold">{lvl.name}</span>
           </div>
@@ -131,7 +131,7 @@ function Profile({ id }: { id: number }) {
           <div className="sticker p-5">
             <div className="flex items-end justify-between">
               <div>
-                <div className="num text-5xl font-extrabold">{points.toLocaleString()}</div>
+                <div className="num text-5xl font-semibold">{points.toLocaleString()}</div>
                 <div className="text-mist">points · {lvl.name}, {lvl.blurb.toLowerCase()}</div>
               </div>
               {next && <div className="text-right text-haze text-[15px]">{(next.min - points).toLocaleString()} to {next.name}</div>}
@@ -139,7 +139,7 @@ function Profile({ id }: { id: number }) {
             <div className="mt-4 flex gap-1.5">
               {LEVELS.map((l) => (
                 <div key={l.name} className="flex-1">
-                  <div className={`h-3 rounded-full border-2 border-ink ${points >= l.min ? "bg-fur" : "bg-dusk"}`} />
+                  <div className={`h-3 rounded-full border border-line ${points >= l.min ? "bg-fur" : "bg-dusk"}`} />
                   <div className={`mt-1.5 text-[13px] font-semibold ${points >= l.min ? "text-belly" : "text-haze"}`}>{l.name}</div>
                 </div>
               ))}
@@ -154,7 +154,7 @@ function Profile({ id }: { id: number }) {
           {activity && activity.length ? (
             <ul className="sticker p-2">
               {activity.map((a) => (
-                <li key={a.id} className="flex items-center justify-between gap-3 p-3 border-b-2 border-dusk-3 last:border-0">
+                <li key={a.id} className="flex items-center justify-between gap-3 p-3 border-b border-line last:border-0">
                   <span className="font-semibold min-w-0 truncate">{a.title}</span>
                   <span className="text-haze text-[14px] shrink-0">
                     {a.tx_hash ? (
@@ -169,7 +169,7 @@ function Profile({ id }: { id: number }) {
               ))}
             </ul>
           ) : (
-            <EmptyState title="Nothing yet">Rewards, launches and agent actions for this Fox will show up here.</EmptyState>
+            <EmptyState title="Nothing yet">Rewards, launches and agent actions for this Fox will appear here.</EmptyState>
           )}
         </section>
       </div>

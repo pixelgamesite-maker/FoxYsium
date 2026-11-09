@@ -34,13 +34,13 @@ function FoundryTokenOpen() {
   return (
     <div className="pt-6 md:pt-10">
       <div className="flex flex-col sm:flex-row sm:items-center gap-5">
-        <div className="h-24 w-24 rounded-2xl border-[3px] border-ink bg-belly overflow-hidden grid place-items-center shadow-[5px_5px_0_var(--color-ink)] shrink-0">
-          {l.image_url ? <img src={l.image_url} alt="" className="h-full w-full object-cover" /> : <span className="font-extrabold text-ink text-3xl">{l.ticker.slice(0, 2)}</span>}
+        <div className="h-24 w-24 rounded-2xl border border-line bg-belly overflow-hidden grid place-items-center shrink-0">
+          {l.image_url ? <img src={l.image_url} alt="" className="h-full w-full object-cover" /> : <span className="font-semibold text-ink text-3xl">{l.ticker.slice(0, 2)}</span>}
         </div>
         <div className="min-w-0">
-          <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-extrabold leading-none truncate">{l.name}</h1>
+          <h1 className="text-[clamp(2.2rem,8vw,3.5rem)] font-semibold leading-none truncate">{l.name}</h1>
           <div className="mt-2 flex flex-wrap items-center gap-2">
-            <span className="text-haze font-semibold text-lg">${l.ticker}</span>
+            <span className="text-haze font-medium text-lg">${l.ticker}</span>
             <span className={cn("chip", l.status === "live" ? "bg-mint text-ink" : l.status === "review" ? "bg-gold text-ink" : "bg-rose text-ink")}>
               {l.status === "live" ? "Live" : l.status === "review" ? "In review" : "Rejected"}
             </span>
@@ -102,7 +102,7 @@ function FoundryTokenOpen() {
             )}
             {l.x_url && (
               <a href={l.x_url} target="_blank" rel="noreferrer" className="flex items-center gap-3 font-semibold hover:text-fur">
-                <span className="w-5 text-center font-extrabold">𝕏</span> {l.x_url.replace(/^https:\/\/(www\.)?/, "")}
+                <span className="w-5 text-center font-semibold">𝕏</span> {l.x_url.replace(/^https:\/\/(www\.)?/, "")}
               </a>
             )}
             {l.token_address && (

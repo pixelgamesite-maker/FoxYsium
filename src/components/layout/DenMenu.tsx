@@ -40,9 +40,9 @@ export function DenMenu({ open, onClose }: { open: boolean; onClose: () => void 
         ref={panel}
         className={cn(
           "sheet-up absolute inset-x-0 bottom-0 max-h-[88dvh] overflow-y-auto",
-          "bg-dusk-2 border-t-[3px] border-ink rounded-t-[28px]",
+          "bg-dusk-2 border-t border-line rounded-t-[22px]",
           "md:sheet-down md:bottom-auto md:top-[76px] md:inset-x-auto md:right-[max(16px,calc((100vw-72rem)/2+16px))] md:w-[680px] md:max-h-[calc(100dvh-96px)]",
-          "md:border-[3px] md:rounded-[26px] md:shadow-[8px_8px_0_var(--color-ink)]",
+          "md:border md:rounded-[20px] md:shadow-2xl md:shadow-black/50",
         )}
       >
         {/* grab handle on phones */}
@@ -51,19 +51,16 @@ export function DenMenu({ open, onClose }: { open: boolean; onClose: () => void 
         </div>
 
         <div className="flex items-center justify-between px-5 pt-3 md:pt-5 pb-1">
-          <Link href={HOME.path} onClick={onClose} className={cn("inline-flex items-center gap-2.5 font-extrabold text-xl", location === "/" && "text-fur")}>
-            <FoxMark size={30} /> Where to?
+          <Link href={HOME.path} onClick={onClose} className={cn("inline-flex items-center gap-2.5 font-semibold text-xl", location === "/" && "text-fur")}>
+            <FoxMark size={28} /> FoxYsium
           </Link>
           <span className="text-[14px] text-haze hidden sm:inline">Esc to close</span>
         </div>
 
-        <div className="px-4 pb-4 grid md:grid-cols-2 gap-x-4">
+        <div className="px-4 pb-5 grid md:grid-cols-2 gap-x-4">
           {GROUPS.map((g) => (
             <section key={g.name} className="mt-4">
-              <h2 className="px-1 mb-2 flex items-center gap-2 text-[15px] font-bold text-mist">
-                <span className="h-2.5 w-2.5 rounded-full border-2 border-ink" style={{ background: g.color }} />
-                {g.name}
-              </h2>
+              <h2 className="px-1 mb-2 text-[13px] font-medium text-haze">{g.name}</h2>
               <div className="grid grid-cols-2 gap-2.5 [&>*:last-child:nth-child(odd)]:col-span-2">
                 {g.items.map((it) => {
                   const active = location.startsWith(it.path);
@@ -74,26 +71,21 @@ export function DenMenu({ open, onClose }: { open: boolean; onClose: () => void 
                       onClick={onClose}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "relative rounded-2xl border-[2.5px] border-ink p-3 min-h-[92px] flex flex-col justify-between transition-[transform,background-color] active:translate-x-[2px] active:translate-y-[2px]",
-                        active ? "bg-fur text-ink shadow-[3px_3px_0_var(--color-ink)]" : "bg-dusk hover:bg-dusk-3 shadow-[3px_3px_0_var(--color-ink)]",
+                        "relative rounded-xl border p-3 min-h-[84px] flex flex-col justify-between transition-colors",
+                        active ? "bg-dusk-3 border-fur/60" : "bg-dusk border-line hover:bg-dusk-3",
                       )}
                     >
                       <span className="flex items-start justify-between">
-                        <span
-                          className="h-9 w-9 rounded-xl border-2 border-ink grid place-items-center"
-                          style={{ background: active ? "var(--color-belly)" : g.color }}
-                        >
-                          <it.icon className="h-[18px] w-[18px] text-ink" strokeWidth={2.4} />
-                        </span>
+                        <it.icon className={cn("h-5 w-5", active ? "text-fur" : "text-mist")} strokeWidth={1.9} />
                         {it.locked && (
-                          <span className={cn("chip !py-0 !px-2 text-[12px]", active ? "bg-ink text-belly" : "bg-dusk-3 text-mist border-transparent")}>
+                          <span className="chip !py-0 !px-2 text-[12px] text-haze">
                             <Lock className="h-3 w-3" /> Soon
                           </span>
                         )}
                       </span>
                       <span className="mt-2">
-                        <span className="block font-extrabold leading-tight">{it.label}</span>
-                        <span className={cn("block text-[13px] leading-snug", active ? "text-ink/75" : "text-haze")}>{it.blurb}</span>
+                        <span className="block font-semibold leading-tight">{it.label}</span>
+                        <span className="block text-[13px] leading-snug text-haze">{it.blurb}</span>
                       </span>
                     </Link>
                   );
@@ -115,7 +107,7 @@ function MenuFooter({ onClose }: { onClose: () => void }) {
   const { data: block, isError } = useBlockNumber({ chainId: elysium.id, query: { refetchInterval: 15_000 } });
 
   return (
-    <div className="border-t-[3px] border-ink bg-dusk/60 px-5 py-4 flex flex-wrap items-center gap-x-4 gap-y-3 pb-[max(16px,env(safe-area-inset-bottom))]">
+    <div className="border-t border-line bg-dusk/60 px-5 py-4 flex flex-wrap items-center gap-x-4 gap-y-3 pb-[max(16px,env(safe-area-inset-bottom))]">
       <span className="inline-flex items-center gap-2 text-[14px] text-mist">
         <span className={cn("h-2.5 w-2.5 rounded-full", block && !isError ? "bg-mint" : "bg-haze")} />
         {elysium.name}
@@ -123,7 +115,7 @@ function MenuFooter({ onClose }: { onClose: () => void }) {
       </span>
       <span className="ml-auto flex items-center gap-1">
         {X_URL && (
-          <a href={X_URL} target="_blank" rel="noreferrer" aria-label="FoxYsium on X" className="h-10 w-10 grid place-items-center rounded-xl hover:bg-dusk-3 font-extrabold text-[17px]">
+          <a href={X_URL} target="_blank" rel="noreferrer" aria-label="FoxYsium on X" className="h-10 w-10 grid place-items-center rounded-xl hover:bg-dusk-3 font-semibold text-[17px]">
             𝕏
           </a>
         )}

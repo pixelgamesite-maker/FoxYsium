@@ -31,14 +31,14 @@ export function Topbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-[60] bg-dusk/90 backdrop-blur-md border-b-[3px] border-ink">
+      <header className="sticky top-0 z-[60] bg-dusk/90 backdrop-blur-md border-b border-line">
         <div className="max-w-6xl mx-auto h-16 px-4 flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="FoxYsium home">
             <FoxMark size={36} />
             <Wordmark size={21} />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-1 ml-6 text-[15px] font-semibold">
+          <nav className="hidden lg:flex items-center gap-1 ml-6 text-[15px] font-medium">
             {links.map((n) => (
               <Link
                 key={n.path}

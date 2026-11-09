@@ -37,7 +37,7 @@ const connectors = [
             name: "FoxYsium",
             description: "2,626 Genesis Foxes on Elysium",
             url: typeof window !== "undefined" ? window.location.origin : "https://foxysium.xyz",
-            icons: [typeof window !== "undefined" ? `${window.location.origin}/fox-hero.png` : ""],
+            icons: [typeof window !== "undefined" ? `${window.location.origin}/art/touch-icon.png` : ""],
           },
         }),
       ]

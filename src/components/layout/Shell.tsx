@@ -23,7 +23,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
 function Footer() {
   const { data: block, isError } = useBlockNumber({ chainId: elysium.id, query: { refetchInterval: 15_000 } });
   return (
-    <footer className="border-t-[3px] border-ink bg-dusk-2/60">
+    <footer className="border-t border-line bg-dusk-2/60">
       <div className="max-w-6xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
         <div className="flex items-start gap-3">
           <FoxMark size={44} />

@@ -106,10 +106,10 @@ function LaunchForm() {
   if (doneId)
     return (
       <div className="sticker p-6 max-w-xl">
-        <span className="h-12 w-12 rounded-full bg-mint border-[2.5px] border-ink grid place-items-center">
+        <span className="h-12 w-12 rounded-full bg-mint border border-line grid place-items-center">
           <Check className="h-7 w-7 text-ink" strokeWidth={3} />
         </span>
-        <div className="mt-4 font-extrabold text-2xl">${ticker} submitted for review</div>
+        <div className="mt-4 font-semibold text-2xl">${ticker} submitted for review</div>
         <p className="text-mist mt-2">
           Once approved, the token is deployed and paired with HYPE, and the launch page goes live in the feed.
         </p>
@@ -126,7 +126,7 @@ function LaunchForm() {
     <div className="grid lg:grid-cols-[1.3fr_1fr] gap-6 items-start">
       <div className="sticker p-5 md:p-6 space-y-5">
         {!eligible && (
-          <div className="rounded-2xl border-[2.5px] border-ink bg-gold text-ink p-4 font-semibold">
+          <div className="rounded-2xl border border-line bg-gold text-ink p-4 font-semibold">
             Launching needs a Genesis Fox in this wallet. You can still fill this in, but it won't submit.
           </div>
         )}
@@ -149,8 +149,8 @@ function LaunchForm() {
 
         <div>
           <div className="label">Token art</div>
-          <label className="flex items-center gap-4 p-3 rounded-2xl border-[2.5px] border-dashed border-dusk-3 hover:border-lilac cursor-pointer">
-            <span className="h-16 w-16 rounded-xl border-[2.5px] border-ink bg-dusk grid place-items-center overflow-hidden shrink-0">
+          <label className="flex items-center gap-4 p-3 rounded-2xl border border-dashed border-line hover:border-lilac cursor-pointer">
+            <span className="h-16 w-16 rounded-xl border border-line bg-dusk grid place-items-center overflow-hidden shrink-0">
               {preview ? <img src={preview} alt="" className="h-full w-full object-cover" /> : <ImagePlus className="h-6 w-6 text-haze" />}
             </span>
             <span className="text-mist">{file ? file.name : "Square PNG, JPG or WebP, up to 2 MB"}</span>
@@ -218,14 +218,14 @@ function LaunchForm() {
       </div>
 
       <aside className="sticker p-5 lg:sticky lg:top-24">
-        <div className="text-haze font-semibold text-[15px]">Launch page preview</div>
+        <div className="text-haze font-medium text-[15px]">Launch page preview</div>
         <div className="flex items-center gap-3 mt-3">
-          <div className="h-16 w-16 rounded-xl border-[2.5px] border-ink bg-belly overflow-hidden grid place-items-center">
-            {preview ? <img src={preview} alt="" className="h-full w-full object-cover" /> : <span className="font-extrabold text-ink text-xl">{(ticker || "??").slice(0, 2)}</span>}
+          <div className="h-16 w-16 rounded-xl border border-line bg-belly overflow-hidden grid place-items-center">
+            {preview ? <img src={preview} alt="" className="h-full w-full object-cover" /> : <span className="font-semibold text-ink text-xl">{(ticker || "??").slice(0, 2)}</span>}
           </div>
           <div className="min-w-0">
-            <div className="font-extrabold text-2xl truncate">{name || "Your token"}</div>
-            <div className="text-haze font-semibold">${ticker || "TICKER"}</div>
+            <div className="font-semibold text-2xl truncate">{name || "Your token"}</div>
+            <div className="text-haze font-medium">${ticker || "TICKER"}</div>
           </div>
         </div>
         <p className="text-mist mt-4 min-h-[3rem]">{desc || "Your description shows here."}</p>
