@@ -1,5 +1,6 @@
 import { formatUnits } from "viem";
 import { TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import TokenIcon, { type TokenId } from "@/components/TokenIcon";
 
 export default function AmountInput({
   id,
@@ -9,6 +10,7 @@ export default function AmountInput({
   max,
   decimals = 18,
   symbol = `$${TOKEN_SYMBOL}`,
+  token = "fox",
 }: {
   id: string;
   label: string;
@@ -17,6 +19,7 @@ export default function AmountInput({
   max?: bigint;
   decimals?: number;
   symbol?: string;
+  token?: TokenId;
 }) {
   return (
     <div>
@@ -43,7 +46,10 @@ export default function AmountInput({
             if (/^\d*\.?\d*$/.test(v)) onChange(v);
           }}
         />
-        <span className="text-haze font-medium">{symbol}</span>
+        <span className="inline-flex items-center gap-1.5 text-mist font-medium">
+          <TokenIcon id={token} size={22} />
+          {symbol}
+        </span>
         {max !== undefined && (
           <button type="button" className="btn btn-sm btn-ghost !min-h-[34px]" onClick={() => onChange(formatUnits(max, decimals))}>
             Max

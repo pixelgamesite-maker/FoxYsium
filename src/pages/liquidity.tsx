@@ -1,12 +1,13 @@
 import { PageHeader, SectionTitle, ButtonLink } from "@/components/den";
 import { CONTRACTS } from "@/lib/contracts";
 import { SWAP_URL, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, Rocket } from "lucide-react";
+import TokenIcon, { PairIcon, type TokenId } from "@/components/TokenIcon";
 
-const POOLS = [
-  { pair: `$${TOKEN_SYMBOL} / WHYPE`, a: "#F27A1A", b: "#5EE6A8", note: "The main pool. Most $FOX trading routes through here." },
-  { pair: `$${TOKEN_SYMBOL} / USDC`, a: "#F27A1A", b: "#6FB7FF", note: "Stable pair for pricing and lower-volatility LPs." },
-  { pair: "Foundry tokens / HYPE", a: "#9C8CFF", b: "#5EE6A8", note: "Each Foundry launch seeds its own HYPE pool at go-live." },
+const POOLS: { pair: string; a: TokenId | null; b: TokenId; note: string }[] = [
+  { pair: `$${TOKEN_SYMBOL} / WHYPE`, a: "fox", b: "hype", note: "The main pool. Most $FOX trading routes through here." },
+  { pair: `$${TOKEN_SYMBOL} / USDC`, a: "fox", b: "usdc", note: "Stable pair for pricing and lower-volatility LPs." },
+  { pair: "Foundry coins / HYPE", a: null, b: "hype", note: "Each Foundry launch seeds its own HYPE pool when it goes live." },
 ];
 
 export default function Liquidity() {
@@ -20,10 +21,16 @@ export default function Liquidity() {
       <div className="grid md:grid-cols-3 gap-4">
         {POOLS.map((p) => (
           <div key={p.pair} className="sticker-sm p-5 flex flex-col">
-            <div className="flex -space-x-2">
-              <span className="h-10 w-10 rounded-full border border-line" style={{ background: p.a }} />
-              <span className="h-10 w-10 rounded-full border border-line" style={{ background: p.b }} />
-            </div>
+            {p.a ? (
+              <PairIcon a={p.a} b={p.b} size={40} />
+            ) : (
+              <span className="inline-flex items-center">
+                <span className="h-10 w-10 rounded-full bg-dusk-3 ring-2 ring-dusk-2 grid place-items-center">
+                  <Rocket className="h-5 w-5 text-mist" />
+                </span>
+                <TokenIcon id={p.b} size={40} className="-ml-2.5 ring-2 ring-dusk-2" />
+              </span>
+            )}
             <div className="mt-3 font-semibold text-xl">{p.pair}</div>
             <p className="text-mist mt-1 leading-snug flex-1">{p.note}</p>
             <div className="mt-4">

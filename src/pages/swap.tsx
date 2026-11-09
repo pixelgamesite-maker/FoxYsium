@@ -1,4 +1,5 @@
-import { Copy, Plus } from "lucide-react";
+import { ArrowRight, Copy, Plus } from "lucide-react";
+import TokenIcon, { TOKENS } from "@/components/TokenIcon";
 import { useAccount } from "wagmi";
 import { PageHeader, SectionTitle, NotLive, ButtonLink, Row } from "@/components/den";
 import { CONTRACTS } from "@/lib/contracts";
@@ -25,7 +26,7 @@ export default function Swap() {
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const p = (await connector?.getProvider()) as any;
-      await p?.request({ method: "wallet_watchAsset", params: { type: "ERC20", options: { address: fox, symbol: TOKEN_SYMBOL, decimals: 18 } } });
+      await p?.request({ method: "wallet_watchAsset", params: { type: "ERC20", options: { address: fox, symbol: TOKEN_SYMBOL, decimals: 18, image: `${window.location.origin}${TOKENS.fox.full}` } } });
     } catch {
       toast({ variant: "destructive", title: "Couldn't add the token", description: "Your wallet doesn't support adding tokens this way." });
     }
@@ -34,6 +35,23 @@ export default function Swap() {
   return (
     <>
       <PageHeader title={`Get $${TOKEN_SYMBOL}`} lede="Buy $FOX with HYPE on Elysium. You'll need it to stake, lock, and pay for some Foundry and agent features." />
+      <div className="sticker-sm p-4 mb-6 flex items-center gap-4 max-w-md">
+        <span className="inline-flex items-center gap-2.5">
+          <TokenIcon id="hype" size={36} />
+          <span>
+            <span className="block font-semibold leading-tight">HYPE</span>
+            <span className="block text-[13px] text-haze">You pay</span>
+          </span>
+        </span>
+        <ArrowRight className="h-5 w-5 text-haze mx-auto" />
+        <span className="inline-flex items-center gap-2.5">
+          <TokenIcon id="fox" size={36} />
+          <span>
+            <span className="block font-semibold leading-tight">${TOKEN_SYMBOL}</span>
+            <span className="block text-[13px] text-haze">You receive</span>
+          </span>
+        </span>
+      </div>
       <div className="grid lg:grid-cols-2 gap-6 items-start">
         {fox ? (
           <div className="sticker p-5 md:p-6">

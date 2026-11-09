@@ -12,3 +12,4 @@ Drop collection art here. The site picks these up by filename:
 
 Once metadata is on IPFS/Arweave, set `ART_BASE_URL` in `src/lib/foxysium-constants.ts`
 to the image base URL instead of hosting 2,626 files here.
+| `tokens/fox.png`, `hype.png`, `usdc.png` | Token logos, 512×512 PNG (use these for DEX listings and wallets). `-128` versions are what the site displays. |
