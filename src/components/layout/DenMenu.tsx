@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import TokenIcon from "@/components/TokenIcon";
 import { Link, useLocation } from "wouter";
 import { Lock, LogOut } from "lucide-react";
 import { useBlockNumber } from "wagmi";
@@ -110,6 +111,7 @@ function MenuFooter({ onClose }: { onClose: () => void }) {
     <div className="border-t border-line bg-dusk/60 px-5 py-4 flex flex-wrap items-center gap-x-4 gap-y-3 pb-[max(16px,env(safe-area-inset-bottom))]">
       <span className="inline-flex items-center gap-2 text-[14px] text-mist">
         <span className={cn("h-2.5 w-2.5 rounded-full", block && !isError ? "bg-mint" : "bg-haze")} />
+        <TokenIcon id="eth" size={18} />
         {robinhood.name}
         <span className="font-mono text-[12px] text-haze">{block ? `#${block.toLocaleString()}` : isError ? "offline" : "…"}</span>
       </span>

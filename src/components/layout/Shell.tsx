@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import TokenIcon from "@/components/TokenIcon";
 import { Link, useLocation } from "wouter";
 import { useBlockNumber } from "wagmi";
 import { Topbar } from "./Topbar";
@@ -36,6 +37,7 @@ function Footer() {
             <p className="text-haze mt-1.5 text-[15px]">{SUPPLY.toLocaleString()} Genesis Foxes on Robinhood Chain.</p>
             <p className="mt-3 inline-flex items-center gap-2 text-[14px] text-mist">
               <span className={cn("h-2.5 w-2.5 rounded-full", block && !isError ? "bg-mint" : "bg-haze")} />
+              <TokenIcon id="eth" size={18} />
               {robinhood.name}
               <span className="font-mono text-[12px] text-haze">{block ? `#${block.toLocaleString()}` : isError ? "offline" : "…"}</span>
             </p>

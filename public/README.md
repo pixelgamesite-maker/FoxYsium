@@ -12,4 +12,4 @@ Drop collection art here. The site picks these up by filename:
 
 Once metadata is on IPFS/Arweave, set `ART_BASE_URL` in `src/lib/foxbank-constants.ts`
 to the image base URL instead of hosting 2,626 files here.
-| `tokens/fox.png`, `usdc.png` | Token logos, 512×512 PNG (use these for DEX listings and wallets). `-128` versions are what the site displays. Add `eth.png` + `eth-128.png` to replace the ETH text badge. |
+| `tokens/fox.png`, `usdc.png`, `robinhood.png` | Token logos, 512×512 PNG (use these for DEX listings and wallets). `-128` versions are what the site displays. `robinhood.png` is used for ETH and the network badge. |

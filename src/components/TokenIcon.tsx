@@ -2,10 +2,10 @@ import { cn } from "@/lib/utils";
 
 export type TokenId = "fox" | "eth" | "usdc";
 
-// `src: null` renders a text badge. Drop a logo at public/tokens/eth.png (+ eth-128.png) and set the paths.
+// `src: null` renders a text badge instead of a logo.
 export const TOKENS: Record<TokenId, { symbol: string; name: string; src: string | null; full: string | null }> = {
   fox: { symbol: "FOX", name: "FoxBank", src: "/tokens/fox-128.png", full: "/tokens/fox.png" },
-  eth: { symbol: "ETH", name: "Ether", src: null, full: null },
+  eth: { symbol: "ETH", name: "Ether on Robinhood Chain", src: "/tokens/robinhood-128.png", full: "/tokens/robinhood.png" },
   usdc: { symbol: "USDC", name: "USD Coin", src: "/tokens/usdc-128.png", full: "/tokens/usdc.png" },
 };
 

@@ -1,7 +1,8 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import TokenIcon from "@/components/TokenIcon";
 import { useWallet } from "@/hooks/use-wallet";
 import { robinhood, hasWalletConnect } from "@/lib/wagmi";
-import { Loader2, Wallet, QrCode, CircleDot } from "lucide-react";
+import { Loader2, Wallet, QrCode } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const LABELS: Record<string, { name: string; hint: string }> = {
@@ -79,7 +80,7 @@ export function ConnectWalletDialog({ open, onOpenChange }: { open: boolean; onO
         )}
 
         <div className="mt-3 flex items-center gap-2 text-[14px] text-mist">
-          <CircleDot className="h-4 w-4 text-mint" />
+          <TokenIcon id="eth" size={18} />
           {robinhood.name} · chain {robinhood.id} · gas paid in ETH
         </div>
       </DialogContent>
