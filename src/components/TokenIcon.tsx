@@ -1,16 +1,28 @@
 import { cn } from "@/lib/utils";
 
-export type TokenId = "fox" | "hype" | "usdc";
+export type TokenId = "fox" | "eth" | "usdc";
 
-export const TOKENS: Record<TokenId, { symbol: string; name: string; src: string; full: string }> = {
-  fox: { symbol: "FOX", name: "FoxYsium", src: "/tokens/fox-128.png", full: "/tokens/fox.png" },
-  hype: { symbol: "HYPE", name: "Hyperliquid", src: "/tokens/hype-128.png", full: "/tokens/hype.png" },
+// `src: null` renders a text badge. Drop a logo at public/tokens/eth.png (+ eth-128.png) and set the paths.
+export const TOKENS: Record<TokenId, { symbol: string; name: string; src: string | null; full: string | null }> = {
+  fox: { symbol: "FOX", name: "FoxBank", src: "/tokens/fox-128.png", full: "/tokens/fox.png" },
+  eth: { symbol: "ETH", name: "Ether", src: null, full: null },
   usdc: { symbol: "USDC", name: "USD Coin", src: "/tokens/usdc-128.png", full: "/tokens/usdc.png" },
 };
 
 /** Round token logo. Logos live in public/tokens. */
 export default function TokenIcon({ id, size = 24, className }: { id: TokenId; size?: number; className?: string }) {
   const t = TOKENS[id];
+  if (!t.src)
+    return (
+      <span
+        role="img"
+        aria-label={t.symbol}
+        className={cn("rounded-full shrink-0 bg-belly text-ink font-semibold grid place-items-center", className)}
+        style={{ width: size, height: size, fontSize: Math.max(9, size * 0.3) }}
+      >
+        {t.symbol}
+      </span>
+    );
   return (
     <img
       src={t.src}

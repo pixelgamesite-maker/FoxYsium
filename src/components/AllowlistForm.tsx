@@ -4,7 +4,7 @@ import { Check, Loader2 } from "lucide-react";
 import { ConnectGate } from "@/components/wallet/ConnectGate";
 import { supabase } from "@/lib/supabase";
 import { useWallet } from "@/hooks/use-wallet";
-import { CLASSES, type FoxClass } from "@/lib/foxysium-constants";
+import { CLASSES, type FoxClass } from "@/lib/foxbank-constants";
 import { cn } from "@/lib/utils";
 
 type Entry = { wallet: string; x_handle: string | null; class_pref: string | null; status: string; created_at: string };

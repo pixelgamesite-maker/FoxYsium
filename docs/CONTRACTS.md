@@ -23,7 +23,7 @@ matching `VITE_*` variable and redeploy.
 - `FoxBusiness` for multi-Fox businesses.
 
 Before any of these hold real funds: tests, an external audit, and a
-testnet run on Elysium (chain 99801).
+testnet run on Robinhood Chain testnet (chain 46630).
 
 ## Indexer (service role)
 

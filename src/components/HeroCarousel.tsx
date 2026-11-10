@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ButtonLink } from "@/components/den";
-import { ART, MINT_PLATFORM, OPENSEA_URL, SUPPLY, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { ART, MINT_PLATFORM, OPENSEA_URL, SUPPLY, TOKEN_SYMBOL } from "@/lib/foxbank-constants";
 import { cn } from "@/lib/utils";
 
 type Slide = {
@@ -16,7 +16,7 @@ const SLIDES: Slide[] = [
   {
     tag: "Genesis collection",
     title: "Every Fox holds its own wallet",
-    body: `${SUPPLY.toLocaleString()} Genesis Foxes on Kinetiq Elysium, minting on ${MINT_PLATFORM}. Each one is an identity, an on-chain account and a stake in the ecosystem's revenue.`,
+    body: `${SUPPLY.toLocaleString()} Genesis Foxes on Robinhood Chain, minting on ${MINT_PLATFORM}. Each one is an identity, an on-chain account and a stake in the ecosystem's revenue.`,
     art: 0,
     ctas: [
       OPENSEA_URL ? { label: `Mint on ${MINT_PLATFORM}`, href: OPENSEA_URL } : { label: "Join the allowlist", href: "/genesis#allowlist" },
@@ -36,7 +36,7 @@ const SLIDES: Slide[] = [
   {
     tag: "FoxFoundry",
     title: "FoxFoundry opens after mint",
-    body: "Genesis holders will be able to launch their own coins on Elysium, paired with HYPE, with creator fees routed back to their Fox.",
+    body: "Genesis holders will be able to launch their own coins on Robinhood Chain, paired with ETH, USDC or $FOX, with creator fees routed back to their Fox.",
     art: 2,
     ctas: [
       { label: "Learn more", href: "/foundry" },
@@ -102,7 +102,7 @@ export default function HeroCarousel() {
   return (
     <section
       aria-roledescription="carousel"
-      aria-label="What FoxYsium does"
+      aria-label="What FoxBank does"
       className="sticker overflow-hidden p-0 mt-5 md:mt-8"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}

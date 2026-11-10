@@ -5,7 +5,7 @@ import LaunchCard from "@/components/LaunchCard";
 import { SectionTitle, StatTile, EmptyState, ButtonLink } from "@/components/den";
 import { useEconomy, useLaunches } from "@/hooks/use-foxes";
 import { fmtToken, fmtInt, pct } from "@/lib/format";
-import { CLASSES, FOUNDRY_LOCKED, REVENUE_SPLIT, ROADMAP, SUPPLY, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { CLASSES, FOUNDRY_LOCKED, REVENUE_SPLIT, ROADMAP, SUPPLY, TOKEN_SYMBOL } from "@/lib/foxbank-constants";
 import FoundryLocked from "@/components/FoundryLocked";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
@@ -34,7 +34,7 @@ function EconomyTiles() {
   return (
     <section className="mt-14">
       <SectionTitle>${TOKEN_SYMBOL} supply</SectionTitle>
-      <p className="text-mist -mt-2 mb-5">Read directly from the Locker and Staking contracts on Elysium, refreshed every 30 seconds.</p>
+      <p className="text-mist -mt-2 mb-5">Read directly from the Locker and Staking contracts on Robinhood Chain, refreshed every 30 seconds.</p>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         <StatTile label="In the locker" value={fmtToken(e.totalLocked, 18, 0)} sub={lockedPct !== null ? `${lockedPct}% of supply` : undefined} tone="mint" live={e.live.locker} />
         <StatTile

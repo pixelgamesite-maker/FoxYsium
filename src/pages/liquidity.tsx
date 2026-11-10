@@ -1,13 +1,13 @@
 import { PageHeader, SectionTitle, ButtonLink } from "@/components/den";
 import { CONTRACTS } from "@/lib/contracts";
-import { SWAP_URL, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { SWAP_URL, TOKEN_SYMBOL } from "@/lib/foxbank-constants";
 import { AlertTriangle } from "lucide-react";
 import TokenIcon, { PairIcon, type TokenId } from "@/components/TokenIcon";
 
 const POOLS: { pair: string; a: TokenId | TokenId[]; b: TokenId; note: string }[] = [
-  { pair: `$${TOKEN_SYMBOL} / WHYPE`, a: "fox", b: "hype", note: "The main pool. Most $FOX trading routes through here." },
+  { pair: `$${TOKEN_SYMBOL} / WETH`, a: "fox", b: "eth", note: "The main pool. Most $FOX trading routes through here." },
   { pair: `$${TOKEN_SYMBOL} / USDC`, a: "fox", b: "usdc", note: "Stable pair for pricing and lower-volatility LPs." },
-  { pair: "Foundry coins", a: ["fox", "usdc"], b: "hype", note: "Each Foundry launch seeds a pool against $FOX, USDC or HYPE when it goes live." },
+  { pair: "Foundry coins", a: ["fox", "usdc"], b: "eth", note: "Each Foundry launch seeds a pool against $FOX, USDC or ETH when it goes live." },
 ];
 
 export default function Liquidity() {
@@ -16,7 +16,7 @@ export default function Liquidity() {
     <>
       <PageHeader
         title="Liquidity"
-        lede="Supply both sides of a pool and earn a cut of every trade through it. Pools run on Elysium's DEXes; FoxYsium points you to the right one."
+        lede="Supply both sides of a pool and earn a cut of every trade through it. Pools run on Robinhood Chain DEXes; FoxBank points you to the right one."
       />
       <div className="grid md:grid-cols-3 gap-4">
         {POOLS.map((p) => (

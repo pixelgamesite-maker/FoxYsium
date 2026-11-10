@@ -4,7 +4,7 @@ import { parseAbiItem, type Address } from "viem";
 import { CONTRACTS, GENESIS_DEPLOY_BLOCK, genesisAbi, registryAbi, stakingAbi, lockerAbi, VAULT_SALT } from "@/lib/contracts";
 
 const transferEvent = parseAbiItem("event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)");
-import { elysium } from "@/lib/wagmi";
+import { robinhood } from "@/lib/wagmi";
 import { supabase, type Launch, type ReputationRow, type ActivityRow } from "@/lib/supabase";
 
 /**
@@ -15,14 +15,14 @@ import { supabase, type Launch, type ReputationRow, type ActivityRow } from "@/l
  * the log range.
  */
 export function useOwnedFoxes(owner: Address | null) {
-  const client = usePublicClient({ chainId: elysium.id });
+  const client = usePublicClient({ chainId: robinhood.id });
   const enabled = !!owner && !!CONTRACTS.genesis && !!client;
   const { data: bal, isLoading: balLoading } = useReadContract({
     address: CONTRACTS.genesis ?? undefined,
     abi: genesisAbi,
     functionName: "balanceOf",
     args: owner ? [owner] : undefined,
-    chainId: elysium.id,
+    chainId: robinhood.id,
     query: { enabled },
   });
   const balance = Number(bal ?? 0n);
@@ -55,7 +55,7 @@ export function useOwnedFoxes(owner: Address | null) {
       abi: genesisAbi,
       functionName: "ownerOf" as const,
       args: [BigInt(id)] as const,
-      chainId: elysium.id,
+      chainId: robinhood.id,
     })),
     query: { enabled: ids0.length > 0 },
   });
@@ -66,7 +66,7 @@ export function useOwnedFoxes(owner: Address | null) {
   return { ids, balance, isLoading: balLoading || candidates.isLoading || ownLoading, live: !!CONTRACTS.genesis };
 }
 
-/** ERC-6551 vault address for a Fox, plus whether it's deployed and its HYPE balance. */
+/** ERC-6551 vault address for a Fox, plus whether it's deployed and its ETH balance. */
 export function useFoxVault(tokenId: number | null) {
   const ready = tokenId !== null && !!CONTRACTS.genesis && !!CONTRACTS.vaultRegistry && !!CONTRACTS.vaultImplementation;
   const { data: vault } = useReadContract({
@@ -74,14 +74,14 @@ export function useFoxVault(tokenId: number | null) {
     abi: registryAbi,
     functionName: "account",
     args: ready
-      ? [CONTRACTS.vaultImplementation!, VAULT_SALT, BigInt(elysium.id), CONTRACTS.genesis!, BigInt(tokenId!)]
+      ? [CONTRACTS.vaultImplementation!, VAULT_SALT, BigInt(robinhood.id), CONTRACTS.genesis!, BigInt(tokenId!)]
       : undefined,
-    chainId: elysium.id,
+    chainId: robinhood.id,
     query: { enabled: ready },
   });
-  const { data: code } = useBytecode({ address: vault, chainId: elysium.id, query: { enabled: !!vault } });
-  const { data: bal } = useBalance({ address: vault, chainId: elysium.id, query: { enabled: !!vault } });
-  return { vault: vault ?? null, deployed: !!code && code !== "0x", hype: bal, configured: ready };
+  const { data: code } = useBytecode({ address: vault, chainId: robinhood.id, query: { enabled: !!vault } });
+  const { data: bal } = useBalance({ address: vault, chainId: robinhood.id, query: { enabled: !!vault } });
+  return { vault: vault ?? null, deployed: !!code && code !== "0x", eth: bal, configured: ready };
 }
 
 export function useFoxOwner(tokenId: number | null) {
@@ -90,7 +90,7 @@ export function useFoxOwner(tokenId: number | null) {
     abi: genesisAbi,
     functionName: "ownerOf",
     args: tokenId !== null ? [BigInt(tokenId)] : undefined,
-    chainId: elysium.id,
+    chainId: robinhood.id,
     query: { enabled: tokenId !== null && !!CONTRACTS.genesis },
   });
 }
@@ -100,11 +100,11 @@ export function useEconomy() {
   const fox = CONTRACTS.fox;
   const { data } = useReadContracts({
     contracts: [
-      { address: fox ?? undefined, abi: [{ type: "function", name: "totalSupply", stateMutability: "view", inputs: [], outputs: [{ type: "uint256" }] }] as const, functionName: "totalSupply", chainId: elysium.id },
-      { address: CONTRACTS.staking ?? undefined, abi: stakingAbi, functionName: "totalStaked", chainId: elysium.id },
-      { address: CONTRACTS.staking ?? undefined, abi: stakingAbi, functionName: "stakerCount", chainId: elysium.id },
-      { address: CONTRACTS.locker ?? undefined, abi: lockerAbi, functionName: "totalLocked", chainId: elysium.id },
-      { address: CONTRACTS.genesis ?? undefined, abi: genesisAbi, functionName: "totalSupply", chainId: elysium.id },
+      { address: fox ?? undefined, abi: [{ type: "function", name: "totalSupply", stateMutability: "view", inputs: [], outputs: [{ type: "uint256" }] }] as const, functionName: "totalSupply", chainId: robinhood.id },
+      { address: CONTRACTS.staking ?? undefined, abi: stakingAbi, functionName: "totalStaked", chainId: robinhood.id },
+      { address: CONTRACTS.staking ?? undefined, abi: stakingAbi, functionName: "stakerCount", chainId: robinhood.id },
+      { address: CONTRACTS.locker ?? undefined, abi: lockerAbi, functionName: "totalLocked", chainId: robinhood.id },
+      { address: CONTRACTS.genesis ?? undefined, abi: genesisAbi, functionName: "totalSupply", chainId: robinhood.id },
     ],
     query: { enabled: !!(fox || CONTRACTS.genesis), refetchInterval: 30_000 },
   });

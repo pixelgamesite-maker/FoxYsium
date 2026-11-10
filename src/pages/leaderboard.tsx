@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { useAccount } from "wagmi";
 import { PageHeader, EmptyState } from "@/components/den";
 import { useLeaderboard } from "@/hooks/use-foxes";
-import { CLASSES, LEVELS, levelFor } from "@/lib/foxysium-constants";
+import { CLASSES, LEVELS, levelFor } from "@/lib/foxbank-constants";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import { short } from "@/lib/format";
 import { cn } from "@/lib/utils";

@@ -1,5 +1,5 @@
 import { useAccount, useConnect, useDisconnect, useChainId, useSwitchChain, useBalance } from "wagmi";
-import { elysium } from "@/lib/wagmi";
+import { robinhood } from "@/lib/wagmi";
 
 export function useWallet() {
   const { address, isConnected, isConnecting, connector } = useAccount();
@@ -7,9 +7,9 @@ export function useWallet() {
   const { disconnect } = useDisconnect();
   const chainId = useChainId();
   const { switchChain, isPending: isSwitching } = useSwitchChain();
-  const { data: balance } = useBalance({ address, chainId: elysium.id, query: { enabled: !!address } });
+  const { data: balance } = useBalance({ address, chainId: robinhood.id, query: { enabled: !!address } });
 
-  const isWrongNetwork = isConnected && connector ? chainId !== elysium.id : false;
+  const isWrongNetwork = isConnected && connector ? chainId !== robinhood.id : false;
 
   return {
     address: address ?? null,
@@ -22,13 +22,13 @@ export function useWallet() {
     connect: (connectorId: string) => {
       const c = connectors.find((x) => x.id === connectorId);
       if (!c) return Promise.reject(new Error("Wallet not available"));
-      return connectAsync({ connector: c, chainId: elysium.id });
+      return connectAsync({ connector: c, chainId: robinhood.id });
     },
     disconnect,
     isWrongNetwork,
     isSwitching,
-    switchToElysium: () => switchChain({ chainId: elysium.id }),
-    hype: balance,
+    switchToRobinhood: () => switchChain({ chainId: robinhood.id }),
+    eth: balance,
   };
 }
 

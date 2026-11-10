@@ -10,6 +10,6 @@ Drop collection art here. The site picks these up by filename:
 | `foxes/1.png` … `foxes/2626.png` | Individual Fox art, shown on `/fox/:id`, the gallery and the Console. Missing files fall back to a silhouette. |
 | `favicon.svg` | Browser tab icon / logo mark. |
 
-Once metadata is on IPFS/Arweave, set `ART_BASE_URL` in `src/lib/foxysium-constants.ts`
+Once metadata is on IPFS/Arweave, set `ART_BASE_URL` in `src/lib/foxbank-constants.ts`
 to the image base URL instead of hosting 2,626 files here.
-| `tokens/fox.png`, `hype.png`, `usdc.png` | Token logos, 512×512 PNG (use these for DEX listings and wallets). `-128` versions are what the site displays. |
+| `tokens/fox.png`, `usdc.png` | Token logos, 512×512 PNG (use these for DEX listings and wallets). `-128` versions are what the site displays. Add `eth.png` + `eth-128.png` to replace the ETH text badge. |

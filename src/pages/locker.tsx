@@ -6,13 +6,13 @@ import { PageHeader, SectionTitle, StatTile, NotLive, EmptyState } from "@/compo
 import { ConnectGate } from "@/components/wallet/ConnectGate";
 import AmountInput from "@/components/AmountInput";
 import { CONTRACTS, lockerAbi } from "@/lib/contracts";
-import { elysium } from "@/lib/wagmi";
+import { robinhood } from "@/lib/wagmi";
 import { useWallet } from "@/hooks/use-wallet";
 import { useEconomy } from "@/hooks/use-foxes";
 import { useFoxToken } from "@/hooks/use-fox-token";
 import { useTx } from "@/hooks/use-tx";
 import { fmtToken, pct } from "@/lib/format";
-import { TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { TOKEN_SYMBOL } from "@/lib/foxbank-constants";
 import { cn } from "@/lib/utils";
 
 const TIERS = [
@@ -89,7 +89,7 @@ function LockPanel() {
     abi: lockerAbi,
     functionName: "locksOf",
     args: [address!],
-    chainId: elysium.id,
+    chainId: robinhood.id,
     query: { enabled: !!address, refetchInterval: 20_000 },
   });
 

@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useWallet } from "@/hooks/use-wallet";
-import { elysium, hasWalletConnect } from "@/lib/wagmi";
+import { robinhood, hasWalletConnect } from "@/lib/wagmi";
 import { Loader2, Wallet, QrCode, CircleDot } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -11,7 +11,7 @@ const LABELS: Record<string, { name: string; hint: string }> = {
 };
 
 export function ConnectWalletDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (o: boolean) => void }) {
-  const { connectors, connect, pendingConnectorId, isConnected, isWrongNetwork, switchToElysium, isSwitching } = useWallet();
+  const { connectors, connect, pendingConnectorId, isConnected, isWrongNetwork, switchToRobinhood, isSwitching } = useWallet();
   const { toast } = useToast();
 
   const unique = connectors.filter((c, i, arr) => arr.findIndex((x) => x.id === c.id) === i);
@@ -35,18 +35,18 @@ export function ConnectWalletDialog({ open, onOpenChange }: { open: boolean; onO
       <DialogContent className="sticker !rounded-[22px] bg-dusk-2 text-belly w-[calc(100%-32px)] max-w-md grid-cols-[minmax(0,1fr)] p-6">
         <DialogHeader className="text-left">
           <DialogTitle className="text-2xl font-semibold">
-            {isConnected && isWrongNetwork ? "Switch to Elysium" : "Connect a wallet"}
+            {isConnected && isWrongNetwork ? "Switch to Robinhood Chain" : "Connect a wallet"}
           </DialogTitle>
           <DialogDescription className="text-mist text-[15px]">
             {isConnected && isWrongNetwork
-              ? `FoxYsium runs on ${elysium.name}. Your wallet will ask to add or switch the network.`
+              ? `FoxBank runs on ${robinhood.name}. Your wallet will ask to add or switch the network.`
               : "Connecting lets the site read your Foxes and balances. Nothing is signed until you choose to."}
           </DialogDescription>
         </DialogHeader>
 
         {isConnected && isWrongNetwork ? (
-          <button className="btn btn-fur w-full mt-2" onClick={switchToElysium} disabled={isSwitching}>
-            {isSwitching && <Loader2 className="h-4 w-4 animate-spin" />} Switch to {elysium.name}
+          <button className="btn btn-fur w-full mt-2" onClick={switchToRobinhood} disabled={isSwitching}>
+            {isSwitching && <Loader2 className="h-4 w-4 animate-spin" />} Switch to {robinhood.name}
           </button>
         ) : (
           <div className="grid grid-cols-[minmax(0,1fr)] gap-3 mt-2">
@@ -80,7 +80,7 @@ export function ConnectWalletDialog({ open, onOpenChange }: { open: boolean; onO
 
         <div className="mt-3 flex items-center gap-2 text-[14px] text-mist">
           <CircleDot className="h-4 w-4 text-mint" />
-          {elysium.name} · chain {elysium.id} · gas paid in HYPE
+          {robinhood.name} · chain {robinhood.id} · gas paid in ETH
         </div>
       </DialogContent>
     </Dialog>

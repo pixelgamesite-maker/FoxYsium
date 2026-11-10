@@ -6,8 +6,8 @@ import { Row, SectionTitle, NotLive, EmptyState, ButtonLink } from "@/components
 import { useFoxOwner, useFoxVault, useReputation, useActivity } from "@/hooks/use-foxes";
 import { useTx } from "@/hooks/use-tx";
 import { CONTRACTS, registryAbi, VAULT_SALT } from "@/lib/contracts";
-import { elysium, explorerAddress, explorerTx } from "@/lib/wagmi";
-import { LEVELS, levelFor, MINT_PLATFORM, OPENSEA_ITEM_BASE, SUPPLY } from "@/lib/foxysium-constants";
+import { robinhood, explorerAddress, explorerTx } from "@/lib/wagmi";
+import { LEVELS, levelFor, MINT_PLATFORM, OPENSEA_ITEM_BASE, SUPPLY } from "@/lib/foxbank-constants";
 import { ago, fmtToken, short } from "@/lib/format";
 import NotFound from "./not-found";
 
@@ -35,7 +35,7 @@ function Profile({ id }: { id: number }) {
       address: CONTRACTS.vaultRegistry!,
       abi: registryAbi,
       functionName: "createAccount",
-      args: [CONTRACTS.vaultImplementation!, VAULT_SALT, BigInt(elysium.id), CONTRACTS.genesis!, BigInt(id)],
+      args: [CONTRACTS.vaultImplementation!, VAULT_SALT, BigInt(robinhood.id), CONTRACTS.genesis!, BigInt(id)],
     });
 
   return (
@@ -80,7 +80,7 @@ function Profile({ id }: { id: number }) {
                 }
               />
             )}
-            <Row k="Network" v={elysium.name} />
+            <Row k="Network" v={robinhood.name} />
           </div>
         </section>
 
@@ -113,7 +113,7 @@ function Profile({ id }: { id: number }) {
                 }
               />
               <Row k="Status" v={v.deployed ? <span className="text-mint">Active</span> : "Not activated (address reserved)"} />
-              <Row k="HYPE balance" v={fmtToken(v.hype?.value, 18, 4)} />
+              <Row k="ETH balance" v={fmtToken(v.eth?.value, 18, 4)} />
               {isOwner && !v.deployed && (
                 <button className="btn btn-fur mt-4" onClick={activate} disabled={!!pending}>
                   {pending && <Loader2 className="h-4 w-4 animate-spin" />} Activate vault

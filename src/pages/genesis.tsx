@@ -5,9 +5,9 @@ import { PageHeader, SectionTitle, Row, ButtonLink } from "@/components/den";
 import AllowlistForm from "@/components/AllowlistForm";
 import { useEconomy, useAllowlistCount } from "@/hooks/use-foxes";
 import { useHashScroll } from "@/hooks/use-hash-scroll";
-import { ART, CLASSES, MINT_PLATFORM, MINT_PRICE, MINT_STATUS, OPENSEA_URL, RARITY, SUPPLY } from "@/lib/foxysium-constants";
+import { ART, CLASSES, MINT_PLATFORM, MINT_PRICE, MINT_STATUS, OPENSEA_URL, RARITY, SUPPLY } from "@/lib/foxbank-constants";
 import { CONTRACTS } from "@/lib/contracts";
-import { elysium, explorerAddress } from "@/lib/wagmi";
+import { robinhood, explorerAddress } from "@/lib/wagmi";
 import { fmtInt, short } from "@/lib/format";
 
 const OWN = [
@@ -27,7 +27,7 @@ export default function Genesis() {
       <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 items-end">
         <PageHeader
           title="Genesis"
-          lede={`${SUPPLY.toLocaleString()} Foxes, fixed forever. Each one carries its own wallet, and holding one is how you take part in everything FoxYsium builds.`}
+          lede={`${SUPPLY.toLocaleString()} Foxes, fixed forever. Each one carries its own wallet, and holding one is how you take part in everything FoxBank builds.`}
         >
           {OPENSEA_URL ? (
             <>
@@ -47,7 +47,7 @@ export default function Genesis() {
           <Row k="Supply" v={SUPPLY.toLocaleString()} />
           <Row k="Mint price" v={MINT_PRICE} />
           <Row k="Mint on" v={OPENSEA_URL ? <a href={OPENSEA_URL} target="_blank" rel="noreferrer" className="underline underline-offset-2">{MINT_PLATFORM}</a> : `${MINT_PLATFORM} (link soon)`} />
-          <Row k="Network" v={elysium.name} />
+          <Row k="Network" v={robinhood.name} />
           <Row k="Status" v={e.live.genesis ? `${fmtInt(e.minted)} minted` : MINT_STATUS === "allowlist" ? "Allowlist open" : MINT_STATUS} />
           {allowlisted !== undefined && <Row k="On the allowlist" v={fmtInt(allowlisted)} />}
           <Row

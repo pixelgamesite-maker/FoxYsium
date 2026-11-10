@@ -8,7 +8,7 @@ import { supabase, type AgentConfig } from "@/lib/supabase";
 import { useWallet } from "@/hooks/use-wallet";
 import { useOwnedFoxes } from "@/hooks/use-foxes";
 import { useToast } from "@/hooks/use-toast";
-import { AGENTS, PERMISSIONS, type AgentTemplate } from "@/lib/foxysium-constants";
+import { AGENTS, PERMISSIONS, type AgentTemplate } from "@/lib/foxbank-constants";
 import { CONTRACTS } from "@/lib/contracts";
 import { cn } from "@/lib/utils";
 

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { useAccount } from "wagmi";
 import { supabase } from "@/lib/supabase";
-import { elysium } from "@/lib/wagmi";
+import { robinhood } from "@/lib/wagmi";
 
 // Wallet sign-in to Supabase (Sign in with Ethereum, EIP-4361).
 // Connecting a wallet is enough to read; signing in is only needed to write
@@ -46,8 +46,8 @@ export function useDenAuth() {
       const { error } = await supabase.auth.signInWithWeb3({
         chain: "ethereum",
         wallet: provider,
-        statement: "Sign in to FoxYsium. This proves you own this wallet and costs no gas.",
-        options: { signInWithEthereum: { chainId: elysium.id } },
+        statement: "Sign in to FoxBank. This proves you own this wallet and costs no gas.",
+        options: { signInWithEthereum: { chainId: robinhood.id } },
       });
       if (error) throw error;
       return true;

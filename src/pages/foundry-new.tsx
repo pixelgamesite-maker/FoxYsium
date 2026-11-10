@@ -1,5 +1,5 @@
 import FoundryLocked from "@/components/FoundryLocked";
-import { FOUNDRY_LOCKED } from "@/lib/foxysium-constants";
+import { FOUNDRY_LOCKED } from "@/lib/foxbank-constants";
 import { useMemo, useState } from "react";
 import { Loader2, ImagePlus, Check } from "lucide-react";
 import { PageHeader, Row, ButtonLink } from "@/components/den";
@@ -41,7 +41,7 @@ function LaunchForm() {
   const [desc, setDesc] = useState("");
   const [supply, setSupply] = useState(SUPPLIES[2]);
   const [fee, setFee] = useState(100);
-  const [reward, setReward] = useState<"hype" | "fox" | "none">("hype");
+  const [reward, setReward] = useState<"eth" | "fox" | "none">("eth");
   const [fox, setFox] = useState<number | null>(null);
   const [website, setWebsite] = useState("");
   const [xUrl, setXUrl] = useState("");
@@ -111,7 +111,7 @@ function LaunchForm() {
         </span>
         <div className="mt-4 font-semibold text-2xl">${ticker} submitted for review</div>
         <p className="text-mist mt-2">
-          Once approved, the token is deployed and paired with HYPE, and the launch page goes live in the feed.
+          Once approved, the token is deployed and paired for trading, and the launch page goes live in the feed.
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           <ButtonLink href={`/foundry/${doneId}`}>View launch page</ButtonLink>
@@ -181,7 +181,7 @@ function LaunchForm() {
         <div>
           <div className="label">Holder rewards paid in</div>
           <div className="flex flex-wrap gap-2">
-            {(["hype", "fox", "none"] as const).map((r) => (
+            {(["eth", "fox", "none"] as const).map((r) => (
               <button key={r} type="button" onClick={() => setReward(r)} aria-pressed={reward === r} className={cn("btn btn-sm", reward === r ? "btn-fur" : "btn-ghost")}>
                 {r === "none" ? "No rewards" : r.toUpperCase()}
               </button>
@@ -233,7 +233,7 @@ function LaunchForm() {
           <Row k="Supply" v={supply.toLocaleString()} />
           <Row k="Creator fee" v={`${(fee / 100).toFixed(2)}%`} />
           <Row k="Holder rewards" v={reward === "none" ? "None" : reward.toUpperCase()} />
-          <Row k="Pair" v="HYPE" />
+          <Row k="Pair" v="ETH" />
           <Row k="Linked Fox" v={fox ? `#${fox}` : "None"} />
         </div>
       </aside>

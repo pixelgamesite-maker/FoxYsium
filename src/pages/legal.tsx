@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/den";
-import { BRAND } from "@/lib/foxysium-constants";
+import { BRAND } from "@/lib/foxbank-constants";
 
 const DRAFT = (
   <div className="sticker-sm p-4 bg-gold text-ink font-semibold mb-8 max-w-3xl">
@@ -15,7 +15,7 @@ export function Terms() {
       <article className="prose-den">
         <h2>Using the site</h2>
         <p>
-          {BRAND} is an interface to smart contracts on Kinetiq Elysium. Connecting a wallet and signing transactions is your
+          {BRAND} is an interface to smart contracts on Robinhood Chain. Connecting a wallet and signing transactions is your
           decision and your responsibility. We never hold your keys and can't reverse transactions.
         </p>
         <h2>No financial advice, no guaranteed returns</h2>

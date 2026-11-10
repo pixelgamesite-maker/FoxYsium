@@ -3,8 +3,8 @@ import { Link, useLocation } from "wouter";
 import { useBlockNumber } from "wagmi";
 import { Topbar } from "./Topbar";
 import FoxMark, { Wordmark } from "@/components/FoxMark";
-import { elysium } from "@/lib/wagmi";
-import { SUPPLY, TELEGRAM_URL, X_URL } from "@/lib/foxysium-constants";
+import { robinhood } from "@/lib/wagmi";
+import { SUPPLY, TELEGRAM_URL, X_URL } from "@/lib/foxbank-constants";
 import { cn } from "@/lib/utils";
 
 export function Shell({ children }: { children: React.ReactNode }) {
@@ -25,7 +25,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
 }
 
 function Footer() {
-  const { data: block, isError } = useBlockNumber({ chainId: elysium.id, query: { refetchInterval: 15_000 } });
+  const { data: block, isError } = useBlockNumber({ chainId: robinhood.id, query: { refetchInterval: 15_000 } });
   return (
     <footer className="border-t border-line bg-dusk-2/60">
       <div className="max-w-6xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
@@ -33,10 +33,10 @@ function Footer() {
           <FoxMark size={44} />
           <div>
             <Wordmark size={24} />
-            <p className="text-haze mt-1.5 text-[15px]">{SUPPLY.toLocaleString()} Genesis Foxes on Kinetiq Elysium.</p>
+            <p className="text-haze mt-1.5 text-[15px]">{SUPPLY.toLocaleString()} Genesis Foxes on Robinhood Chain.</p>
             <p className="mt-3 inline-flex items-center gap-2 text-[14px] text-mist">
               <span className={cn("h-2.5 w-2.5 rounded-full", block && !isError ? "bg-mint" : "bg-haze")} />
-              {elysium.name}
+              {robinhood.name}
               <span className="font-mono text-[12px] text-haze">{block ? `#${block.toLocaleString()}` : isError ? "offline" : "…"}</span>
             </p>
           </div>

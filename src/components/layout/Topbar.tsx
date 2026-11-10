@@ -23,7 +23,7 @@ function PawGlyph() {
 }
 
 export function Topbar() {
-  const { shortAddress, isWrongNetwork, switchToElysium } = useWallet();
+  const { shortAddress, isWrongNetwork, switchToRobinhood } = useWallet();
   const [connectOpen, setConnectOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [location] = useLocation();
@@ -33,7 +33,7 @@ export function Topbar() {
     <>
       <header className="sticky top-0 z-[60] bg-dusk/90 backdrop-blur-md border-b border-line">
         <div className="max-w-6xl mx-auto h-16 px-4 flex items-center gap-3">
-          <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="FoxYsium home">
+          <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="FoxBank home">
             <FoxMark size={36} />
             <Wordmark size={21} />
           </Link>
@@ -52,7 +52,7 @@ export function Topbar() {
 
           <div className="ml-auto flex items-center gap-2">
             {isWrongNetwork ? (
-              <button onClick={switchToElysium} className="btn btn-sm bg-rose text-ink">
+              <button onClick={switchToRobinhood} className="btn btn-sm bg-rose text-ink">
                 <AlertTriangle className="h-4 w-4" /> <span className="hidden sm:inline">Switch network</span>
               </button>
             ) : shortAddress ? (

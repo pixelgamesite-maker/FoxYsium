@@ -1,5 +1,5 @@
 import FoundryLocked from "@/components/FoundryLocked";
-import { FOUNDRY_LOCKED } from "@/lib/foxysium-constants";
+import { FOUNDRY_LOCKED } from "@/lib/foxbank-constants";
 import { useMemo, useState } from "react";
 import { PageHeader, EmptyState, ButtonLink } from "@/components/den";
 import LaunchCard from "@/components/LaunchCard";
@@ -79,7 +79,7 @@ function FoundryOpen() {
         </div>
       ) : (
         <EmptyState title={q ? "No launches match that" : "No launches yet"} action={!q ? <ButtonLink href="/foundry/new">Start a launch</ButtonLink> : undefined}>
-          {!isSupabaseConfigured ? "Connect Supabase to show the Foundry feed." : q ? "Try a different name or ticker." : "Be the first Fox to launch a token on Elysium."}
+          {!isSupabaseConfigured ? "Connect Supabase to show the Foundry feed." : q ? "Try a different name or ticker." : "Be the first Fox to launch a token on Robinhood Chain."}
         </EmptyState>
       )}
     </>

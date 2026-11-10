@@ -2,7 +2,7 @@ import {
   Home, Sparkles, Rocket, ArrowLeftRight, Coins, Lock, Droplets, Trophy, Bot, LayoutGrid,
   BookOpen, FileText, type LucideIcon,
 } from "lucide-react";
-import { FOUNDRY_LOCKED } from "@/lib/foxysium-constants";
+import { FOUNDRY_LOCKED } from "@/lib/foxbank-constants";
 
 export type NavItem = { path: string; label: string; blurb: string; icon: LucideIcon; locked?: boolean };
 export type NavGroup = { name: string; color: string; items: NavItem[] };
@@ -25,7 +25,7 @@ export const GROUPS: NavGroup[] = [
       { path: "/staking", label: "Staking", blurb: "Share in den revenue", icon: Coins },
       { path: "/locker", label: "Locker", blurb: "Lock for privileges", icon: Lock },
       { path: "/liquidity", label: "Liquidity", blurb: "Earn trading fees", icon: Droplets },
-      { path: "/swap", label: "Get $FOX", blurb: "Swap with HYPE", icon: ArrowLeftRight },
+      { path: "/swap", label: "Get $FOX", blurb: "Swap with ETH", icon: ArrowLeftRight },
     ],
   },
   {

@@ -1,5 +1,5 @@
 import { ButtonLink } from "@/components/den";
-import { ART } from "@/lib/foxysium-constants";
+import { ART } from "@/lib/foxbank-constants";
 
 export default function NotFound() {
   const art = ART[5];

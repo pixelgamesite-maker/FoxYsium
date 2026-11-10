@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ART_BASE_URL } from "@/lib/foxysium-constants";
+import { ART_BASE_URL } from "@/lib/foxbank-constants";
 import { cn } from "@/lib/utils";
 
 /** Per-token art with a silhouette fallback until the collection art is uploaded. */

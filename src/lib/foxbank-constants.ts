@@ -1,6 +1,6 @@
 // ── Brand ──────────────────────────────────────────────────────────
 // One place to rename the project if the final name differs.
-export const BRAND = "FoxYsium";
+export const BRAND = "FoxBank";
 export const TOKEN_SYMBOL = "FOX"; // provisional, pending ticker check
 
 // ── Collection facts (edit here: used across all pages) ───────────
@@ -32,9 +32,9 @@ export const X_URL: string | null = env.VITE_X_URL && env.VITE_X_URL !== "https:
 export const TELEGRAM_URL: string | null = env.VITE_TELEGRAM_URL || null;
 
 // OpenSea drop page. Until set, the site shows "Minting on OpenSea soon"
-// instead of a dead link (OpenSea doesn't support Elysium yet).
+// instead of a dead link.
 export const OPENSEA_URL: string | null = env.VITE_OPENSEA_URL || null;
-// Item URL prefix for individual Foxes, e.g. "https://opensea.io/item/elysium/0xabc…/"
+// Item URL prefix for individual Foxes, e.g. "https://opensea.io/item/robinhood/0xabc…/"
 export const OPENSEA_ITEM_BASE: string | null = env.VITE_OPENSEA_ITEM_BASE || null;
 
 // ── Classes (from the blueprint) ───────────────────────────────────
@@ -112,4 +112,4 @@ export const ROADMAP = [
   { phase: "Ecosystem expansion", items: ["FoxMarket", "Reputation and progression", "Fox Businesses and governance"], state: "later" },
 ] as const;
 
-export const LS_ALLOWLIST = "foxysium_allowlist_submitted";
+export const LS_ALLOWLIST = "foxbank_allowlist_submitted";

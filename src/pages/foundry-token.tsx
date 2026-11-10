@@ -1,11 +1,11 @@
 import FoundryLocked from "@/components/FoundryLocked";
-import { FOUNDRY_LOCKED } from "@/lib/foxysium-constants";
+import { FOUNDRY_LOCKED } from "@/lib/foxbank-constants";
 import { Link, useParams } from "wouter";
 import { Copy, ExternalLink, Globe } from "lucide-react";
 import { Row, SectionTitle, StatTile, ButtonLink, EmptyState } from "@/components/den";
 import { useLaunch } from "@/hooks/use-foxes";
 import { explorerAddress } from "@/lib/wagmi";
-import { SWAP_URL } from "@/lib/foxysium-constants";
+import { SWAP_URL } from "@/lib/foxbank-constants";
 import { fmtUsd, short } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
@@ -72,7 +72,7 @@ function FoundryTokenOpen() {
             <Row k="Total supply" v={Number(l.total_supply).toLocaleString()} />
             <Row k="Creator fee" v={`${(l.creator_fee_bps / 100).toFixed(2)}% per trade`} />
             <Row k="Holder rewards" v={l.reward_mode === "none" ? "None" : `Paid in ${l.reward_mode.toUpperCase()}`} />
-            <Row k="Pair" v="HYPE" />
+            <Row k="Pair" v="ETH" />
             <Row k="Creator" mono v={<a className="underline underline-offset-2" href={explorerAddress(l.creator_wallet)} target="_blank" rel="noreferrer">{short(l.creator_wallet)}</a>} />
             <Row
               k="Contract"

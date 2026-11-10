@@ -7,13 +7,13 @@ import { ConnectGate } from "@/components/wallet/ConnectGate";
 import AmountInput from "@/components/AmountInput";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { CONTRACTS, stakingAbi } from "@/lib/contracts";
-import { elysium } from "@/lib/wagmi";
+import { robinhood } from "@/lib/wagmi";
 import { useWallet } from "@/hooks/use-wallet";
 import { useEconomy } from "@/hooks/use-foxes";
 import { useFoxToken } from "@/hooks/use-fox-token";
 import { useTx } from "@/hooks/use-tx";
 import { fmtInt, fmtToken, pct } from "@/lib/format";
-import { TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { TOKEN_SYMBOL } from "@/lib/foxbank-constants";
 
 const HOW = [
   { t: "Rewards come from revenue", b: "Foundry, market and agent fees fund the pool. When the ecosystem earns more, the pool grows; when it earns less, so does your share." },
@@ -84,7 +84,7 @@ function StakePanel() {
       abi: stakingAbi,
       functionName: fn,
       args: [address!] as const,
-      chainId: elysium.id,
+      chainId: robinhood.id,
     })),
     query: { enabled: !!address, refetchInterval: 15_000 },
   });

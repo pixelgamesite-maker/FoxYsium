@@ -1,4 +1,4 @@
-/** FoxYsium logo mark, sleepy-eyed fox head in the Genesis art's colours. */
+/** FoxBank logo mark, sleepy-eyed fox head in the Genesis art's colours. */
 export default function FoxMark({ size = 36, className = "" }: { size?: number; className?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" className={className} aria-hidden="true">
@@ -17,7 +17,7 @@ export default function FoxMark({ size = 36, className = "" }: { size?: number; 
 export function Wordmark({ size = 20 }: { size?: number }) {
   return (
     <span className="font-semibold tracking-tight leading-none" style={{ fontSize: size }}>
-      Fox<span className="text-fur">Y</span>sium
+      Fox<span className="text-fur">Bank</span>
     </span>
   );
 }

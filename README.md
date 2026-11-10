@@ -1,6 +1,6 @@
-# FoxYsium
+# FoxBank
 
-2,626 Genesis Foxes on Kinetiq Elysium. Every Fox gets its own wallet (ERC-6551),
+2,626 Genesis Foxes on Robinhood Chain. Every Fox gets its own wallet (ERC-6551),
 an optional AI operator with on-chain spending limits, and a share of ecosystem
 revenue. This repo is the web app.
 
@@ -50,15 +50,16 @@ What's stored, and who can write it:
 
 ## Network
 
-Defaults to **Elysium Testnet** (chain `99801`, gas in HYPE). Elysium mainnet is
-scheduled for Nov 9 2026; when Kinetiq publishes its chain ID, RPC and explorer,
-change `VITE_CHAIN_ID`, `VITE_CHAIN_NAME`, `VITE_RPC_URL`, `VITE_EXPLORER_URL`
-and redeploy. Note viem's built-in `elysiumTestnet` is a different chain.
+Defaults to **Robinhood Chain mainnet** (chain `4663`, gas in ETH,
+RPC `https://rpc.mainnet.chain.robinhood.com`, explorer
+`https://robinhoodchain.blockscout.com`). To use testnet, set `VITE_CHAIN_ID=46630`
+(the RPC and explorer switch automatically) and redeploy. The public RPC is
+rate-limited; for production, put a dedicated provider URL in `VITE_RPC_URL`.
 
 ## Mint (OpenSea)
 
-Genesis mints on OpenSea. OpenSea doesn't support Kinetiq Elysium yet, so the
-site shows "Minting on OpenSea soon" until you set `VITE_OPENSEA_URL`. When the
+Genesis mints on OpenSea, which supports Robinhood Chain. Until the drop is
+live, the site shows "Minting on OpenSea soon" until you set `VITE_OPENSEA_URL`. When the
 drop is live, also set `VITE_GENESIS_ADDRESS` and `VITE_GENESIS_DEPLOY_BLOCK` so
 the Console and Fox pages can read ownership. The allowlist exports to the CSV
 OpenSea asks for, see [`docs/CONTRACTS.md`](docs/CONTRACTS.md#allowlist--opensea).
@@ -85,10 +86,10 @@ src/
     wallet/         ConnectWalletDialog, ConnectGate
     ui/             Radix primitives (shadcn), restyled
   hooks/            use-wallet, use-den-auth (Supabase SIWE), use-foxes, use-tx, use-fox-token
-  lib/              foxysium-constants (edit copy/numbers here), wagmi, contracts, supabase
+  lib/              foxbank-constants (edit copy/numbers here), wagmi, contracts, supabase
 public/             art, see public/README.md
 supabase/migrations SQL schema + RLS
 ```
 
 Brand name, supply, classes, rarity, revenue split and roadmap all live in
-`src/lib/foxysium-constants.ts`.
+`src/lib/foxbank-constants.ts`.

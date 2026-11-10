@@ -1,11 +1,11 @@
 import { Lock } from "lucide-react";
 import { ButtonLink } from "@/components/den";
-import { ART } from "@/lib/foxysium-constants";
+import { ART } from "@/lib/foxbank-constants";
 import { cn } from "@/lib/utils";
 
 const INSIDE = [
-  { t: "Your own coin", b: "Name, ticker and artwork, trading on Elysium within minutes." },
-  { t: "Paired with HYPE", b: "Liquidity from the first block, where Hyperliquid's capital already lives." },
+  { t: "Your own coin", b: "Name, ticker and artwork, trading on Robinhood Chain within minutes." },
+  { t: "Paired from day one", b: "Liquidity against ETH, USDC or $FOX from the first block." },
   { t: "Fees routed to your Fox", b: "A share of every trade settles into the creator Fox's vault." },
 ];
 

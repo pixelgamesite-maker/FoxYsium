@@ -1,7 +1,7 @@
 import { useReadContracts } from "wagmi";
 import { maxUint256, type Address } from "viem";
 import { CONTRACTS, foxTokenAbi } from "@/lib/contracts";
-import { elysium } from "@/lib/wagmi";
+import { robinhood } from "@/lib/wagmi";
 import { useTx } from "@/hooks/use-tx";
 
 /** $FOX balance + allowance for a spender, and an approve helper. */
@@ -10,9 +10,9 @@ export function useFoxToken(owner: Address | null, spender: Address | null) {
   const enabled = !!fox && !!owner;
   const { data } = useReadContracts({
     contracts: [
-      { address: fox ?? undefined, abi: foxTokenAbi, functionName: "balanceOf", args: owner ? [owner] : undefined, chainId: elysium.id },
-      { address: fox ?? undefined, abi: foxTokenAbi, functionName: "allowance", args: owner && spender ? [owner, spender] : undefined, chainId: elysium.id },
-      { address: fox ?? undefined, abi: foxTokenAbi, functionName: "decimals", chainId: elysium.id },
+      { address: fox ?? undefined, abi: foxTokenAbi, functionName: "balanceOf", args: owner ? [owner] : undefined, chainId: robinhood.id },
+      { address: fox ?? undefined, abi: foxTokenAbi, functionName: "allowance", args: owner && spender ? [owner, spender] : undefined, chainId: robinhood.id },
+      { address: fox ?? undefined, abi: foxTokenAbi, functionName: "decimals", chainId: robinhood.id },
     ],
     query: { enabled, refetchInterval: 20_000 },
   });

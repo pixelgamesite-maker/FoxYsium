@@ -5,8 +5,8 @@ import { useBlockNumber } from "wagmi";
 import FoxMark from "@/components/FoxMark";
 import { useWallet } from "@/hooks/use-wallet";
 import { useDenAuth } from "@/hooks/use-den-auth";
-import { elysium } from "@/lib/wagmi";
-import { TELEGRAM_URL, X_URL } from "@/lib/foxysium-constants";
+import { robinhood } from "@/lib/wagmi";
+import { TELEGRAM_URL, X_URL } from "@/lib/foxbank-constants";
 import { GROUPS, HOME } from "./nav";
 import { cn } from "@/lib/utils";
 
@@ -52,7 +52,7 @@ export function DenMenu({ open, onClose }: { open: boolean; onClose: () => void 
 
         <div className="flex items-center justify-between px-5 pt-3 md:pt-5 pb-1">
           <Link href={HOME.path} onClick={onClose} className={cn("inline-flex items-center gap-2.5 font-semibold text-xl", location === "/" && "text-fur")}>
-            <FoxMark size={28} /> FoxYsium
+            <FoxMark size={28} /> FoxBank
           </Link>
           <span className="text-[14px] text-haze hidden sm:inline">Esc to close</span>
         </div>
@@ -104,23 +104,23 @@ export function DenMenu({ open, onClose }: { open: boolean; onClose: () => void 
 function MenuFooter({ onClose }: { onClose: () => void }) {
   const { address, shortAddress, disconnect } = useWallet();
   const { signOut } = useDenAuth();
-  const { data: block, isError } = useBlockNumber({ chainId: elysium.id, query: { refetchInterval: 15_000 } });
+  const { data: block, isError } = useBlockNumber({ chainId: robinhood.id, query: { refetchInterval: 15_000 } });
 
   return (
     <div className="border-t border-line bg-dusk/60 px-5 py-4 flex flex-wrap items-center gap-x-4 gap-y-3 pb-[max(16px,env(safe-area-inset-bottom))]">
       <span className="inline-flex items-center gap-2 text-[14px] text-mist">
         <span className={cn("h-2.5 w-2.5 rounded-full", block && !isError ? "bg-mint" : "bg-haze")} />
-        {elysium.name}
+        {robinhood.name}
         <span className="font-mono text-[12px] text-haze">{block ? `#${block.toLocaleString()}` : isError ? "offline" : "…"}</span>
       </span>
       <span className="ml-auto flex items-center gap-1">
         {X_URL && (
-          <a href={X_URL} target="_blank" rel="noreferrer" aria-label="FoxYsium on X" className="h-10 w-10 grid place-items-center rounded-xl hover:bg-dusk-3 font-semibold text-[17px]">
+          <a href={X_URL} target="_blank" rel="noreferrer" aria-label="FoxBank on X" className="h-10 w-10 grid place-items-center rounded-xl hover:bg-dusk-3 font-semibold text-[17px]">
             𝕏
           </a>
         )}
         {TELEGRAM_URL && (
-          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" aria-label="FoxYsium on Telegram" className="h-10 px-3 grid place-items-center rounded-xl hover:bg-dusk-3 font-semibold text-[14px]">
+          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" aria-label="FoxBank on Telegram" className="h-10 px-3 grid place-items-center rounded-xl hover:bg-dusk-3 font-semibold text-[14px]">
             Telegram
           </a>
         )}

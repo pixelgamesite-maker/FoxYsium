@@ -9,7 +9,7 @@ export const isSupabaseConfigured = !!(supabaseUrl && supabaseAnonKey);
 // states) in a fresh clone or preview without a Supabase project.
 export const supabase: SupabaseClient | null = isSupabaseConfigured
   ? createClient(supabaseUrl!, supabaseAnonKey!, {
-      auth: { persistSession: true, autoRefreshToken: true, storageKey: "foxysium-auth" },
+      auth: { persistSession: true, autoRefreshToken: true, storageKey: "foxbank-auth" },
     })
   : null;
 
@@ -23,7 +23,7 @@ export interface Launch {
   image_url: string | null;
   total_supply: number;
   creator_fee_bps: number;
-  reward_mode: "hype" | "fox" | "none";
+  reward_mode: "eth" | "fox" | "none";
   linked_fox_id: number | null;
   token_address: string | null;
   website: string | null;

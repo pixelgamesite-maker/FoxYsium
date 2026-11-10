@@ -1,5 +1,5 @@
 import { formatUnits } from "viem";
-import { TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { TOKEN_SYMBOL } from "@/lib/foxbank-constants";
 import TokenIcon, { type TokenId } from "@/components/TokenIcon";
 
 export default function AmountInput({

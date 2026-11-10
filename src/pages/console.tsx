@@ -9,7 +9,7 @@ import { useOwnedFoxes, useFoxVault } from "@/hooks/use-foxes";
 import { useFoxToken } from "@/hooks/use-fox-token";
 import { supabase, type Launch, type AgentConfig } from "@/lib/supabase";
 import { CONTRACTS } from "@/lib/contracts";
-import { AGENTS, FOUNDRY_LOCKED, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { AGENTS, FOUNDRY_LOCKED, TOKEN_SYMBOL } from "@/lib/foxbank-constants";
 import { fmtToken } from "@/lib/format";
 
 export default function Console() {
@@ -24,7 +24,7 @@ export default function Console() {
 }
 
 function Inner() {
-  const { address, hype } = useWallet();
+  const { address, eth } = useWallet();
   const { isSignedIn, signIn, signingIn } = useDenAuth();
   const foxes = useOwnedFoxes(address);
   const tok = useFoxToken(address, null);
@@ -51,7 +51,7 @@ function Inner() {
     <>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         <StatTile label="Foxes held" value={foxes.balance} live={foxes.live} tone="fur" />
-        <StatTile label="HYPE" value={fmtToken(hype?.value, 18, 4)} />
+        <StatTile label="ETH" value={fmtToken(eth?.value, 18, 4)} />
         <StatTile label={`$${TOKEN_SYMBOL}`} value={fmtToken(tok.balance)} live={!!CONTRACTS.fox} />
         <StatTile label="Allowlist" value={<span className="capitalize text-[1.3rem]">{mine.data?.allowlist ?? (isSignedIn ? "Not joined" : "Sign in to see")}</span>} />
       </div>
@@ -139,7 +139,7 @@ function FoxCard({ id }: { id: number }) {
       <div className="p-3 border-t border-line">
         <div className="font-semibold">Fox #{id}</div>
         <div className="text-[14px] text-mist">
-          {!v.configured ? "Vault pending" : v.deployed ? `Vault · ${fmtToken(v.hype?.value, 18, 3)} HYPE` : "Vault not activated"}
+          {!v.configured ? "Vault pending" : v.deployed ? `Vault · ${fmtToken(v.eth?.value, 18, 3)} ETH` : "Vault not activated"}
         </div>
       </div>
     </Link>

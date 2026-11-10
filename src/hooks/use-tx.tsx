@@ -3,7 +3,7 @@ import { useConfig, useWriteContract } from "wagmi";
 import { waitForTransactionReceipt } from "wagmi/actions";
 import { useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import { explorerTx, elysium } from "@/lib/wagmi";
+import { explorerTx, robinhood } from "@/lib/wagmi";
 
 /**
  * Write a contract call, wait for the receipt, toast the outcome and refresh
@@ -19,9 +19,9 @@ export function useTx() {
   async function run(label: string, params: Parameters<typeof writeContractAsync>[0]) {
     setPending(label);
     try {
-      const hash = await writeContractAsync({ ...params, chainId: elysium.id } as Parameters<typeof writeContractAsync>[0]);
-      toast({ title: `${label}: submitted`, description: "Waiting for Elysium to confirm…" });
-      const r = await waitForTransactionReceipt(config, { hash, chainId: elysium.id });
+      const hash = await writeContractAsync({ ...params, chainId: robinhood.id } as Parameters<typeof writeContractAsync>[0]);
+      toast({ title: `${label}: submitted`, description: "Waiting for Robinhood Chain to confirm…" });
+      const r = await waitForTransactionReceipt(config, { hash, chainId: robinhood.id });
       if (r.status !== "success") throw new Error("The transaction reverted.");
       toast({
         title: `${label}: done`,

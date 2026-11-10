@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/den";
 import { useHashScroll } from "@/hooks/use-hash-scroll";
-import { elysium } from "@/lib/wagmi";
-import { SUPPLY, TOKEN_SYMBOL } from "@/lib/foxysium-constants";
+import { robinhood } from "@/lib/wagmi";
+import { SUPPLY, TOKEN_SYMBOL } from "@/lib/foxbank-constants";
 
 const TOC = [
   ["genesis", "Genesis"],
@@ -30,11 +30,11 @@ export default function Docs() {
         </nav>
       </aside>
       <div className="min-w-0">
-        <PageHeader title="How FoxYsium works" lede="A concise overview of each product and what it does with your Fox." />
+        <PageHeader title="How FoxBank works" lede="A concise overview of each product and what it does with your Fox." />
         <article className="prose-den">
           <h2 id="genesis" className="scroll-mt-24">Genesis</h2>
           <p>
-            The Genesis collection is {SUPPLY.toLocaleString()} ERC-721 Foxes on Kinetiq Elysium, fixed forever. Each Fox has unique
+            The Genesis collection is {SUPPLY.toLocaleString()} ERC-721 Foxes on Robinhood Chain, fixed forever. Each Fox has unique
             art, one of five classes (Sovereign, Oracle, Alchemist, Merchant, Guardian) and a rarity tier. Every Fox gets the core
             ecosystem; class and rarity add privileges on top.
           </p>
@@ -42,7 +42,7 @@ export default function Docs() {
           <h2 id="vault" className="scroll-mt-24">FoxVault</h2>
           <p>
             Every Fox has its own wallet, an ERC-6551 token-bound account. The address is derived from the Fox's token ID, so it
-            exists before it's activated. The vault can hold HYPE, tokens, NFTs and positions, and whoever holds the Fox controls
+            exists before it's activated. The vault can hold ETH, tokens, NFTs and positions, and whoever holds the Fox controls
             it.
           </p>
           <ul>
@@ -67,7 +67,7 @@ export default function Docs() {
           <h2 id="foundry" className="scroll-mt-24">FoxFoundry</h2>
           <p><strong>Locked until after mint.</strong> Here's how it will work when it opens.</p>
           <p>
-            Genesis holders will be able to launch their own coins, paired with HYPE. Every launch page shows total supply, creator fee (capped at
+            Genesis holders will be able to launch their own coins, paired with ETH, USDC or $FOX. Every launch page shows total supply, creator fee (capped at
             3%), holder reward mode and any allocations. Submissions are reviewed before they go live; we reject launches that
             impersonate real projects, hide allocations or use exploitative fee setups.
           </p>
@@ -77,7 +77,7 @@ export default function Docs() {
           <p>
             <strong>Staking</strong> puts ${TOKEN_SYMBOL} in a shared pool that earns from ecosystem revenue. Principal unlocks
             gradually. <strong>Locking</strong> is separate: a time-lock with no admin key that unlocks platform privileges at 30, 90,
-            180 and 365 days, not higher yield. <strong>Liquidity</strong> runs on Elysium DEXes; LPs earn trading fees and carry
+            180 and 365 days, not higher yield. <strong>Liquidity</strong> runs on Robinhood Chain DEXes; LPs earn trading fees and carry
             impermanent-loss risk.
           </p>
 
@@ -105,16 +105,16 @@ export default function Docs() {
           <p>
             ${TOKEN_SYMBOL} is the ecosystem's utility token: staking, locking, Foundry fees, agent services, upgrades and governance.
             Supply and allocations will be published before launch, with team and treasury tokens in the public locker. Gas on
-            Elysium is still paid in HYPE.
+            Robinhood Chain is still paid in ETH.
           </p>
 
           <h2 id="network" className="scroll-mt-24">Network</h2>
           <ul>
-            <li>Network: {elysium.name}</li>
-            <li>Chain ID: <code>{elysium.id}</code></li>
-            <li>Gas: HYPE</li>
-            <li>RPC: <code>{elysium.rpcUrls.default.http[0]}</code></li>
-            <li>Explorer: <a href={elysium.blockExplorers.default.url} target="_blank" rel="noreferrer">{elysium.blockExplorers.default.url.replace(/^https:\/\//, "")}</a></li>
+            <li>Network: {robinhood.name}</li>
+            <li>Chain ID: <code>{robinhood.id}</code></li>
+            <li>Gas: ETH</li>
+            <li>RPC: <code>{robinhood.rpcUrls.default.http[0]}</code></li>
+            <li>Explorer: <a href={robinhood.blockExplorers.default.url} target="_blank" rel="noreferrer">{robinhood.blockExplorers.default.url.replace(/^https:\/\//, "")}</a></li>
           </ul>
         </article>
       </div>
